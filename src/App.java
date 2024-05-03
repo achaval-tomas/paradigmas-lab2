@@ -18,10 +18,9 @@ import utils.UserInterface;
 public class App {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
-        FeedParser parser = new FeedParser();
         byte[] encoded = Files.readAllBytes(Paths.get("news.xml"));
         String xml = new String(encoded);
-        parser.parseXML(xml);
+        FeedParser.parseXML(xml);
 
 
 
