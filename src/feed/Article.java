@@ -18,6 +18,6 @@ public class Article {
         System.out.println("Description: " + description);
         System.out.println("Publication date: " + pubDate);
         System.out.println("Link: " + link);
-        System.out.println("********************************************************************************");
+        System.out.println("*".repeat(80));
     }
 }
