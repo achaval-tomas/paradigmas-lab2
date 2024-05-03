@@ -11,19 +11,19 @@ public class UserInterface {
     private List<Option> options;
 
     public UserInterface() {
-        options = new ArrayList<Option>();
+        options = new ArrayList<>();
         options.add(new Option("-h", "--help", 0));
         options.add(new Option("-f", "--feed", 1));
         options.add(new Option("-ne", "--named-entity", 1));
         options.add(new Option("-pf", "--print-feed", 0));
         options.add(new Option("-sf", "--stats-format", 1));
 
-        optionDict = new HashMap<String, String>();
+        optionDict = new HashMap<>();
     }
 
     public Config handleInput(String[] args) {
 
-        for (Integer i = 0; i < args.length; i++) {
+        for (int i = 0; i < args.length; i++) {
             for (Option option : options) {
                 if (option.getName().equals(args[i]) || option.getLongName().equals(args[i])) {
                     if (option.getnumValues() == 0) {
@@ -41,8 +41,8 @@ public class UserInterface {
             }
         }
 
-        Boolean printFeed = optionDict.containsKey("-pf");
-        Boolean computeNamedEntities = optionDict.containsKey("-ne");
+        boolean printFeed = optionDict.containsKey("-pf");
+        boolean computeNamedEntities = optionDict.containsKey("-ne");
         // TODO: use value for heuristic config
 
         String feedKey = optionDict.get("-f");
