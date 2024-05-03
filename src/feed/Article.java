@@ -12,7 +12,7 @@ public class Article {
         this.pubDate = pubDate;
         this.link = link;
     }
-    
+
     void print() {
         System.out.println("Title: " + title);
         System.out.println("Description: " + description);

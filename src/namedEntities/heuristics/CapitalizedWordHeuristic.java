@@ -1,8 +1,8 @@
 package namedEntities.heuristics;
 
 import java.text.Normalizer;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

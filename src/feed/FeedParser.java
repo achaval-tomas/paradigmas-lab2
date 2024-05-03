@@ -21,7 +21,8 @@ import java.util.List;
 
 public class FeedParser {
 
-    public static List<Article> parseXML(String xmlData) throws ParserConfigurationException, SAXException, IOException {
+    public static List<Article> parseXML(String xmlData)
+            throws ParserConfigurationException, SAXException, IOException {
         List<Article> articles = new ArrayList<>();
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -31,9 +32,12 @@ public class FeedParser {
         NodeList items = document.getElementsByTagName("item");
 
         for (int i = 0; i < items.getLength(); i++) {
-            Element item = (Element)items.item(i);
+            Element item = (Element) items.item(i);
             String title = item.getElementsByTagName("title").item(0).getTextContent().trim();
-            String description = item.getElementsByTagName("dcterms:alternative").item(0).getTextContent().trim();
+            String description = item.getElementsByTagName("dcterms:alternative")
+                    .item(0)
+                    .getTextContent()
+                    .trim();
             String link = item.getElementsByTagName("link").item(0).getTextContent().trim();
             String pubDate = item.getElementsByTagName("pubDate").item(0).getTextContent().trim();
 

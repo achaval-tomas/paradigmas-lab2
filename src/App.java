@@ -1,19 +1,17 @@
+import feed.Article;
+import feed.FeedParser;
+import org.xml.sax.SAXException;
+import utils.Config;
+import utils.FeedsData;
+import utils.JSONParser;
+import utils.UserInterface;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
-
-import feed.Article;
-import feed.FeedParser;
-import utils.Config;
-import utils.FeedsData;
-import utils.JSONParser;
-import utils.UserInterface;
 
 public class App {
 
@@ -21,7 +19,6 @@ public class App {
         byte[] encoded = Files.readAllBytes(Paths.get("news.xml"));
         String xml = new String(encoded);
         FeedParser.parseXML(xml);
-
 
 
         List<FeedsData> feedsDataArray = new ArrayList<>();
