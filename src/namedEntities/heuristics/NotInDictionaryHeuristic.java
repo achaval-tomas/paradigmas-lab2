@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 public class NotInDictionaryHeuristic {
     private final HashSet<String> dictionary;
+    private final HashSet<String> prefixes;
 
     public NotInDictionaryHeuristic() throws IOException {
         dictionary = new HashSet<>();
@@ -30,9 +31,24 @@ public class NotInDictionaryHeuristic {
                 dictionary.add(word + "s");
             }
         }
+
+        prefixes = new HashSet<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("./spanish_prefixes.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String prefix = line.trim().replace("-", "");
+                if (prefix.isEmpty()) {
+                    continue;
+                }
+
+                prefix = Normalizer.normalize(prefix, Normalizer.Form.NFD);
+                prefix = prefix.replaceAll("\\p{M}", "");
+                prefixes.add(prefix);
+            }
+        }
     }
 
-    public List<String> extractCandidates(String text)  {
+    public List<String> extractCandidates(String text) {
         text = text.replaceAll("[-+.^:,\"]", "");
         text = Normalizer.normalize(text, Normalizer.Form.NFD);
         text = text.replaceAll("\\p{M}", "");
@@ -46,7 +62,21 @@ public class NotInDictionaryHeuristic {
         while (matcher.find()) {
             String word = matcher.group();
 
-            if (!dictionary.contains(word)) {
+            if (dictionary.contains(word)) {
+                continue;
+            }
+
+            boolean isCandidate = true;
+            for (int i = 1; i <= word.length(); i++) {
+                var prefix = word.substring(0, i);
+                var actualWord = word.substring(i);
+                if (prefixes.contains(prefix) && dictionary.contains(actualWord)) {
+                    isCandidate = false;
+                    break;
+                }
+            }
+
+            if (isCandidate) {
                 candidates.add(word);
             }
         }
