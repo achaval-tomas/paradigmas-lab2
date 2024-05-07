@@ -20,4 +20,20 @@ public class Article {
         System.out.println("Link: " + link);
         System.out.println("*".repeat(80));
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public String getLink() {
+        return link;
+    }
 }

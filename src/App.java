@@ -29,7 +29,7 @@ public class App {
         NotInDictionaryHeuristic heuristic = new NotInDictionaryHeuristic();
 
         for (Article article : articles) {
-            List<String> nmdEntities = heuristic.extractCandidates(article.description);
+            List<String> nmdEntities = heuristic.extractCandidates(article.getDescription());
             
             for (String entity : nmdEntities) {
                 System.out.println(entity);
