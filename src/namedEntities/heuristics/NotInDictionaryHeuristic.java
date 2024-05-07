@@ -62,25 +62,27 @@ public class NotInDictionaryHeuristic {
         while (matcher.find()) {
             String word = matcher.group();
 
-            if (dictionary.contains(word)) {
-                continue;
-            }
-
-            boolean isCandidate = true;
-            for (int i = 1; i <= word.length(); i++) {
-                var prefix = word.substring(0, i);
-                var actualWord = word.substring(i);
-                if (prefixes.contains(prefix) && dictionary.contains(actualWord)) {
-                    isCandidate = false;
-                    break;
-                }
-            }
-
-            if (isCandidate) {
+            if (isNamedEntity(word)) {
                 candidates.add(word);
             }
         }
 
         return candidates;
+    }
+
+    public boolean isNamedEntity(String word) {
+        if (dictionary.contains(word)) {
+            return false;
+        }
+
+        for (int i = 1; i <= word.length(); i++) {
+            var prefix = word.substring(0, i);
+            var actualWord = word.substring(i);
+            if (prefixes.contains(prefix) && dictionary.contains(actualWord)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
