@@ -5,6 +5,9 @@ import utils.Config;
 import utils.FeedsData;
 import utils.JSONParser;
 import utils.UserInterface;
+import namedEntities.heuristics.SubjectAndVerbHeuristic;
+import namedEntities.heuristics.CapitalizedWordHeuristic;
+
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -19,6 +22,10 @@ public class App {
         byte[] encoded = Files.readAllBytes(Paths.get("news.xml"));
         String xml = new String(encoded);
         FeedParser.parseXML(xml);
+        List<String> nmdEntities = SubjectAndVerbHeuristic.extractCandidates("Lionel Messi se ganó vaaaamos");
+        for (String entity : nmdEntities) {
+            System.out.println(entity);
+        }
 
 
         List<FeedsData> feedsDataArray = new ArrayList<>();
