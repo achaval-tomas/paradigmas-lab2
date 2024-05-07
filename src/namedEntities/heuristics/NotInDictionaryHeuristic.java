@@ -11,24 +11,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NotInDictionaryHeuristic {
-    private HashSet<String> dictionary;
+    private final HashSet<String> dictionary;
 
     public NotInDictionaryHeuristic() throws IOException {
         dictionary = new HashSet<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("./spanish_dict.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                dictionary.add(line.trim());
+                String word = line.trim();
+                if (word.isEmpty()) {
+                    continue;
+                }
+
+                word = Normalizer.normalize(word, Normalizer.Form.NFD);
+                word = word.replaceAll("\\p{M}", "");
+                dictionary.add(word);
+                dictionary.add(word + "es");
+                dictionary.add(word + "s");
             }
         }
     }
 
     public List<String> extractCandidates(String text)  {
         text = text.replaceAll("[-+.^:,\"]", "");
-        text = Normalizer.normalize(text, Normalizer.Form.NFC);
+        text = Normalizer.normalize(text, Normalizer.Form.NFD);
         text = text.replaceAll("\\p{M}", "");
+        text = text.toLowerCase();
 
-        Pattern pattern = Pattern.compile("[A-Za-záéíóúñ]+");
+        Pattern pattern = Pattern.compile("[A-Za-z]+");
         Matcher matcher = pattern.matcher(text);
 
         List<String> candidates = new ArrayList<>();
@@ -36,8 +46,8 @@ public class NotInDictionaryHeuristic {
         while (matcher.find()) {
             String word = matcher.group();
 
-            if (!dictionary.contains(word.toLowerCase())) {
-                candidates.add(matcher.group());
+            if (!dictionary.contains(word)) {
+                candidates.add(word);
             }
         }
 

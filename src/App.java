@@ -5,8 +5,6 @@ import utils.Config;
 import utils.FeedsData;
 import utils.JSONParser;
 import utils.UserInterface;
-import namedEntities.heuristics.SubjectAndVerbHeuristic;
-import namedEntities.heuristics.CapitalizedWordHeuristic;
 import namedEntities.heuristics.NotInDictionaryHeuristic;
 
 
