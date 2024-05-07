@@ -21,6 +21,10 @@ import java.util.List;
 
 public class FeedParser {
 
+    private static String getTextOfTag(Element item, String tagName) {
+        return item.getElementsByTagName(tagName).item(0).getTextContent().trim();
+    }
+
     public static List<Article> parseXML(String xmlData)
             throws ParserConfigurationException, SAXException, IOException {
         List<Article> articles = new ArrayList<>();
@@ -33,18 +37,20 @@ public class FeedParser {
 
         for (int i = 0; i < items.getLength(); i++) {
             Element item = (Element) items.item(i);
-            String title = item.getElementsByTagName("title").item(0).getTextContent().trim();
-            String description = item.getElementsByTagName("dcterms:alternative")
-                    .item(0)
-                    .getTextContent()
-                    .trim();
-            String link = item.getElementsByTagName("link").item(0).getTextContent().trim();
-            String pubDate = item.getElementsByTagName("pubDate").item(0).getTextContent().trim();
 
-            Article article = new Article(title, description, link, pubDate);
-            article.print();
+            try {
+                String title = getTextOfTag(item, "title");
+                String description = getTextOfTag(item, "description");
+                String link = getTextOfTag(item, "link");
+                String pubDate = getTextOfTag(item, "pubDate");
 
-            articles.add(article);
+                Article article = new Article(title, description, link, pubDate);
+                article.print();
+
+                articles.add(article);
+            } catch (NullPointerException e) {
+                continue;
+            }
         }
 
         return articles;
