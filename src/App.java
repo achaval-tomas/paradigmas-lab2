@@ -7,6 +7,8 @@ import utils.JSONParser;
 import utils.UserInterface;
 import namedEntities.heuristics.SubjectAndVerbHeuristic;
 import namedEntities.heuristics.CapitalizedWordHeuristic;
+import namedEntities.heuristics.NotInDictionaryHeuristic;
+
 
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,12 +23,19 @@ public class App {
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
         byte[] encoded = Files.readAllBytes(Paths.get("news.xml"));
         String xml = new String(encoded);
-        FeedParser.parseXML(xml);
-        List<String> nmdEntities = SubjectAndVerbHeuristic.extractCandidates("Lionel Messi se ganó vaaaamos");
-        for (String entity : nmdEntities) {
-            System.out.println(entity);
-        }
 
+
+        List<Article> articles = FeedParser.parseXML(xml);
+        NotInDictionaryHeuristic heuristic = new NotInDictionaryHeuristic();
+
+        for (Article article : articles) {
+            List<String> nmdEntities = heuristic.extractCandidates(article.description);
+            
+            for (String entity : nmdEntities) {
+                System.out.println(entity);
+            }
+        }
+        
 
         List<FeedsData> feedsDataArray = new ArrayList<>();
         try {

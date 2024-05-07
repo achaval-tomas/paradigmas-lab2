@@ -15,7 +15,7 @@ public class SubjectAndVerbHeuristic {
         text = text.replaceAll("\\p{M}", "");
         
         Pattern pattern = Pattern.compile("([A-Za-z]+)(?:\\sse)?(?:\\s[a-z]+[áéíóú])");
-    
+
         Matcher matcher = pattern.matcher(text);
 
         while (matcher.find()) {
