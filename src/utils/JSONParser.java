@@ -34,47 +34,16 @@ public class JSONParser {
 
     static public HashMap<String, NamedEntity> parseJsonDict(String jsonFilePath) throws IOException {
         String jsonData = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
-        List<NamedEntity> namedEntities = new ArrayList<>();
-
         JSONArray jsonArray = new JSONArray(jsonData);
+
+        List<NamedEntity> namedEntities = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            String label = jsonObject.getString("label");
-            String category = jsonObject.getString("Category");
-            JSONArray topicsJson = jsonObject.getJSONArray("Topics");
-            JSONArray keywordsJson = jsonObject.getJSONArray("Keywords");
+            NamedEntity namedEntity = parseJsonNamedEntity(jsonObject);
 
-            var topics = new ArrayList<String>();
-            for (var topic : topicsJson) {
-                if (topic instanceof String) {
-                    topics.add((String)topic);
-                }
+            if (namedEntity != null) {
+                namedEntities.add(namedEntity);
             }
-
-            var keywords = new ArrayList<String>();
-            for (var keyword : keywordsJson) {
-                if (keyword instanceof String) {
-                    keywords.add((String) keyword);
-                }
-            }
-
-            switch (category) {
-                case "PERSON":
-                    namedEntities.add(new PersonEntity(label, topics, keywords, ""));
-                    break;
-                case "LOCATION":
-                    namedEntities.add(new LocationEntity(label, topics, keywords, "", 0, 0));
-                    break;
-                case "ORGANIZATION":
-                    namedEntities.add(new OrganizationEntity(label, topics, keywords, "", ""));
-                    break;
-                case "OTHER":
-                    namedEntities.add(new OtherEntity(label, topics, keywords));
-                    break;
-                default:
-                    break;
-            };
-
         }
 
         var map = new HashMap<String, NamedEntity>();
@@ -86,5 +55,34 @@ public class JSONParser {
         }
 
         return map;
+    }
+
+    static private NamedEntity parseJsonNamedEntity(JSONObject jsonObject) throws  IOException {
+        String label = jsonObject.getString("label");
+        String category = jsonObject.getString("Category");
+        JSONArray topicsJson = jsonObject.getJSONArray("Topics");
+        JSONArray keywordsJson = jsonObject.getJSONArray("Keywords");
+
+        var topics = new ArrayList<String>();
+        for (var topic : topicsJson) {
+            if (topic instanceof String) {
+                topics.add((String)topic);
+            }
+        }
+
+        var keywords = new ArrayList<String>();
+        for (var keyword : keywordsJson) {
+            if (keyword instanceof String) {
+                keywords.add((String) keyword);
+            }
+        }
+
+        return switch (category) {
+            case "PERSON" -> new PersonEntity(label, topics, keywords, "");
+            case "LOCATION" -> new LocationEntity(label, topics, keywords, "", 0, 0);
+            case "ORGANIZATION" -> new OrganizationEntity(label, topics, keywords, "", "");
+            case "OTHER" -> new OtherEntity(label, topics, keywords);
+            default -> null;
+        };
     }
 }
