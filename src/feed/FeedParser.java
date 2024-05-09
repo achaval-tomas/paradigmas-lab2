@@ -22,7 +22,11 @@ import java.util.List;
 public class FeedParser {
 
     private static String getTextOfTag(Element item, String tagName) {
-        return item.getElementsByTagName(tagName).item(0).getTextContent().trim();
+        try {
+            return item.getElementsByTagName(tagName).item(0).getTextContent().trim();
+        } catch (Exception e) {
+            return "";
+        }
     }
 
     public static List<Article> parseXML(String xmlData)
@@ -38,19 +42,15 @@ public class FeedParser {
         for (int i = 0; i < items.getLength(); i++) {
             Element item = (Element) items.item(i);
 
-            try {
-                String title = getTextOfTag(item, "title");
-                String description = getTextOfTag(item, "description");
-                String link = getTextOfTag(item, "link");
-                String pubDate = getTextOfTag(item, "pubDate");
+            String title = getTextOfTag(item, "title");
+            String description = getTextOfTag(item, "description");
+            String link = getTextOfTag(item, "link");
+            String pubDate = getTextOfTag(item, "pubDate");
 
-                Article article = new Article(title, description, link, pubDate);
-                article.print();
+            Article article = new Article(title, description, link, pubDate);
+            article.print();
 
-                articles.add(article);
-            } catch (NullPointerException e) {
-                continue;
-            }
+            articles.add(article);
         }
 
         return articles;

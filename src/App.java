@@ -1,5 +1,6 @@
 import feed.Article;
 import feed.FeedParser;
+import namedEntities.heuristics.SubjectAndVerbHeuristic;
 import org.xml.sax.SAXException;
 import utils.Config;
 import utils.FeedsData;
@@ -24,11 +25,17 @@ public class App {
 
 
         List<Article> articles = FeedParser.parseXML(xml);
-        NotInDictionaryHeuristic heuristic = new NotInDictionaryHeuristic();
+        SubjectAndVerbHeuristic heuristic = new SubjectAndVerbHeuristic();
 
         for (Article article : articles) {
             List<String> nmdEntities = heuristic.extractCandidates(article.getDescription());
             
+            for (String entity : nmdEntities) {
+                System.out.println(entity);
+            }
+
+            nmdEntities = heuristic.extractCandidates(article.getTitle());
+
             for (String entity : nmdEntities) {
                 System.out.println(entity);
             }
@@ -52,7 +59,7 @@ public class App {
     // TODO: Change the signature of this function if needed
     private static void run(Config config, List<FeedsData> feedsDataArray) {
 
-        if (feedsDataArray == null || feedsDataArray.size() == 0) {
+        if (feedsDataArray == null || feedsDataArray.isEmpty()) {
             System.out.println("No feeds data found");
             return;
         }
