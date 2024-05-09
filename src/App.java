@@ -1,6 +1,7 @@
 import feed.Article;
 import feed.FeedParser;
 import namedEntities.heuristics.Heuristic;
+import namedEntities.NamedEntity;
 
 import org.xml.sax.SAXException;
 import utils.Config;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class App {
@@ -60,19 +62,12 @@ public class App {
         if (config.getComputeNamedEntities()) {
             System.out.println("Computing named entities using " + config.getHeuristicName());
 
+            var candidates = new ArrayList<String>();
             for (Article article : articles) {
-                List<String> nmdEntities = heuristic.extractCandidates(article.getDescription());
-
-                for (String entity : nmdEntities) {
-                    System.out.println(entity);
-                }
-
-                nmdEntities = heuristic.extractCandidates(article.getTitle());
-
-                for (String entity : nmdEntities) {
-                    System.out.println(entity);
-                }
+                candidates.addAll(heuristic.extractCandidates(article.getDescription()));
             }
+            List<NamedEntity> namedEntities = extractNamedEntities(candidates);
+
 
             // TODO: Print stats
             System.out.println("\nStats: ");
@@ -102,6 +97,21 @@ public class App {
         System.out.println("                                       Available formats are: ");
         System.out.println("                                       cat: Category-wise stats");
         System.out.println("                                       topic: Topic-wise stats");
+    }
+
+    private static List<NamedEntity> extractNamedEntities(List<String> candidates) throws IOException {
+        HashMap<String, NamedEntity> map = JSONParser.parseJsonDict("src/data/dictionary.json");
+
+        var namedEntities = new ArrayList<NamedEntity>();
+        for (String candidate : candidates) {
+            var entity = map.get(candidate);
+            if (entity == null) {
+                continue;
+            }
+            namedEntities.add(entity);
+        }
+        
+        return namedEntities;
     }
 
 }

@@ -2,10 +2,10 @@ package namedEntities;
 
 import java.util.List;
 
-abstract class NamedEntity {
-    protected final String label;
-    protected final List<String> topics;
-    protected final List<String> keywords;
+public abstract class NamedEntity {
+    private final String label;
+    private final List<String> topics;
+    private final List<String> keywords;
 
     protected NamedEntity(String label, List<String> topics, List<String> keywords) {
         this.label = label;
