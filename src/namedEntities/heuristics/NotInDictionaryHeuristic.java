@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NotInDictionaryHeuristic {
+public class NotInDictionaryHeuristic implements Heuristic {
     private final HashSet<String> dictionary;
     private final HashSet<String> prefixes;
 

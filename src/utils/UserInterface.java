@@ -1,5 +1,7 @@
 package utils;
 
+import namedEntities.heuristics.Heuristic;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,10 +45,26 @@ public class UserInterface {
 
         boolean printFeed = optionDict.containsKey("-pf");
         boolean computeNamedEntities = optionDict.containsKey("-ne");
-        // TODO: use value for heuristic config
 
         String feedKey = optionDict.get("-f");
 
-        return new Config(printFeed, computeNamedEntities, feedKey);
+        Heuristic heuristic = null;
+        String heuristicName = "";
+        if (computeNamedEntities) {
+            heuristicName = optionDict.get("-ne");
+            String className = "namedEntities.heuristics." + heuristicName + "Heuristic";
+
+            try {
+                heuristic = (Heuristic) Class.forName(className)
+                        .getDeclaredConstructor().newInstance();
+            } catch (ClassNotFoundException e) {
+                System.out.println("The provided heuristic does not exist");
+                System.exit(1);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return new Config(printFeed, computeNamedEntities, feedKey, heuristic, heuristicName);
     }
 }

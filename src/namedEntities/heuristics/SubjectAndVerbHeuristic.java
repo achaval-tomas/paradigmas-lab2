@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SubjectAndVerbHeuristic {
+public class SubjectAndVerbHeuristic implements Heuristic {
     public List<String> extractCandidates(String text) {
         List<String> candidates = new ArrayList<>();
 

@@ -1,12 +1,12 @@
 import feed.Article;
 import feed.FeedParser;
-import namedEntities.heuristics.SubjectAndVerbHeuristic;
+import namedEntities.heuristics.Heuristic;
+
 import org.xml.sax.SAXException;
 import utils.Config;
 import utils.FeedsData;
 import utils.JSONParser;
 import utils.UserInterface;
-import namedEntities.heuristics.NotInDictionaryHeuristic;
 
 
 
@@ -20,27 +20,6 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
-        byte[] encoded = Files.readAllBytes(Paths.get("news.xml"));
-        String xml = new String(encoded);
-
-
-        List<Article> articles = FeedParser.parseXML(xml);
-        SubjectAndVerbHeuristic heuristic = new SubjectAndVerbHeuristic();
-
-        for (Article article : articles) {
-            List<String> nmdEntities = heuristic.extractCandidates(article.getDescription());
-            
-            for (String entity : nmdEntities) {
-                System.out.println(entity);
-            }
-
-            nmdEntities = heuristic.extractCandidates(article.getTitle());
-
-            for (String entity : nmdEntities) {
-                System.out.println(entity);
-            }
-        }
-        
 
         List<FeedsData> feedsDataArray = new ArrayList<>();
         try {
@@ -57,7 +36,14 @@ public class App {
     }
 
     // TODO: Change the signature of this function if needed
-    private static void run(Config config, List<FeedsData> feedsDataArray) {
+    private static void run(Config config, List<FeedsData> feedsDataArray)
+            throws ParserConfigurationException, IOException, SAXException {
+
+        byte[] encoded = Files.readAllBytes(Paths.get("news.xml"));
+        String xml = new String(encoded);
+
+        List<Article> articles = FeedParser.parseXML(xml);
+        Heuristic heuristic = config.getHeuristic();
 
         if (feedsDataArray == null || feedsDataArray.isEmpty()) {
             System.out.println("No feeds data found");
@@ -73,10 +59,21 @@ public class App {
         }
 
         if (config.getComputeNamedEntities()) {
-            // TODO: complete the message with the selected heuristic name
-            System.out.println("Computing named entities using ");
+            System.out.println("Computing named entities using " + config.getHeuristicName());
 
-            // TODO: compute named entities using the selected heuristic
+            for (Article article : articles) {
+                List<String> nmdEntities = heuristic.extractCandidates(article.getDescription());
+
+                for (String entity : nmdEntities) {
+                    System.out.println(entity);
+                }
+
+                nmdEntities = heuristic.extractCandidates(article.getTitle());
+
+                for (String entity : nmdEntities) {
+                    System.out.println(entity);
+                }
+            }
 
             // TODO: Print stats
             System.out.println("\nStats: ");
@@ -98,8 +95,9 @@ public class App {
         System.out.println("  -ne, --named-entity <heuristicName>: Use the specified heuristic to extract");
         System.out.println("                                       named entities");
         System.out.println("                                       Available heuristic names are: ");
-        // TODO: Print the available heuristics with the following format
-        System.out.println("                                       <name>: <description>");
+        System.out.println("                                       CapitalizedWord: Match connected capitalized words.");
+        System.out.println("                                       NotInDictionary: Match words not found in a common spanish dictionary.");
+        System.out.println("                                       SubjectAndVerb: Match subjects that are followed by verbs.");
         System.out.println("  -pf, --print-feed:                   Print the fetched feed");
         System.out.println("  -sf, --stats-format <format>:        Print the stats in the specified format");
         System.out.println("                                       Available formats are: ");
