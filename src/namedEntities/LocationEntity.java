@@ -26,4 +26,6 @@ public class LocationEntity extends NamedEntity {
     public float getLongitude() {
         return longitude;
     }
+
+    public String getCategoryName() { return "LOCATION"; }
 }

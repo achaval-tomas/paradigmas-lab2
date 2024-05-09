@@ -61,7 +61,7 @@ public class JSONParser {
         String label = jsonObject.getString("label");
         String category = jsonObject.getString("Category");
         JSONArray topicsJson = jsonObject.getJSONArray("Topics");
-        JSONArray keywordsJson = jsonObject.getJSONArray("Keywords");
+        JSONArray keywordsJson = jsonObject.getJSONArray("keywords");
 
         var topics = new ArrayList<String>();
         for (var topic : topicsJson) {
@@ -73,7 +73,7 @@ public class JSONParser {
         var keywords = new ArrayList<String>();
         for (var keyword : keywordsJson) {
             if (keyword instanceof String) {
-                keywords.add((String) keyword);
+                keywords.add(((String)keyword).toLowerCase());
             }
         }
 

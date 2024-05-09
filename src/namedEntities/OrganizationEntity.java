@@ -20,4 +20,6 @@ public class OrganizationEntity extends NamedEntity {
     public String getType() {
         return type;
     }
+
+    public String getCategoryName() { return "ORGANIZATION"; }
 }

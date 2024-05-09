@@ -24,4 +24,6 @@ public abstract class NamedEntity {
     public List<String> getKeywords() {
         return keywords;
     }
+
+    public abstract String getCategoryName();
 }

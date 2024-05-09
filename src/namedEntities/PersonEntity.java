@@ -14,4 +14,6 @@ public class PersonEntity extends NamedEntity {
     public String getName() {
         return name;
     }
+
+    public String getCategoryName() { return "PERSON"; }
 }

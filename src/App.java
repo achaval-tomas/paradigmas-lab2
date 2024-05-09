@@ -4,12 +4,7 @@ import namedEntities.heuristics.Heuristic;
 import namedEntities.NamedEntity;
 
 import org.xml.sax.SAXException;
-import utils.Config;
-import utils.FeedsData;
-import utils.JSONParser;
-import utils.UserInterface;
-
-
+import utils.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -60,20 +55,65 @@ public class App {
         }
 
         if (config.getComputeNamedEntities()) {
-            System.out.println("Computing named entities using " + config.getHeuristicName());
-
-            var candidates = new ArrayList<String>();
-            for (Article article : articles) {
-                candidates.addAll(heuristic.extractCandidates(article.getDescription()));
-            }
-            List<NamedEntity> namedEntities = extractNamedEntities(candidates);
-
-
-            // TODO: Print stats
-            System.out.println("\nStats: ");
-            System.out.println("-".repeat(80));
+            computeNamedEntities(config, articles, heuristic);
         }
     }
+
+    private static void computeNamedEntities(Config config, List<Article> articles, Heuristic heuristic) throws IOException {
+        System.out.println("Computing named entities using " + config.getHeuristicName());
+
+        var candidates = new ArrayList<String>();
+        for (Article article : articles) {
+            candidates.addAll(heuristic.extractCandidates(article.getDescription()));
+            candidates.addAll(heuristic.extractCandidates(article.getTitle()));
+        }
+        for (String candidate : candidates) {
+            System.out.println(candidate);
+        }
+
+        List<NamedEntity> namedEntities = extractNamedEntities(candidates);
+
+        System.out.println("\nStats: ");
+        switch (config.getStatsFormat()) {
+            case Category -> printStatsByCategory(namedEntities);
+            case Topic -> printStatsByTopic(namedEntities);
+        }
+        System.out.println("-".repeat(80));
+    }
+
+    private static void printStatsByCategory(List<NamedEntity> namedEntities) {
+        var statsByCategory = new HashMap<String, HashMap<NamedEntity, Integer>>();
+        for (NamedEntity namedEntity : namedEntities) {
+            var category = namedEntity.getCategoryName();
+            var categoryCounts = statsByCategory.computeIfAbsent(category, k -> new HashMap<>());
+
+            var count = categoryCounts.getOrDefault(namedEntity, 0);
+            categoryCounts.put(namedEntity, count + 1);
+        }
+
+        for (var category : statsByCategory.keySet()){
+            System.out.printf("Category: %s\n", category);
+            var stats = statsByCategory.get(category);
+            for (var entity : stats.keySet()) {
+                System.out.printf("        %s (%d)\n", entity.getLabel(), stats.get(entity));
+            }
+        }
+    }
+
+    private static void printStatsByTopic(List<NamedEntity> namedEntities) {
+        var statsByTopic = new HashMap<String, HashMap<NamedEntity, Integer>>();
+        for (NamedEntity namedEntity : namedEntities) {
+            var topics = namedEntity.getTopics();
+
+            for (var topic : topics) {
+                var categoryCounts = statsByTopic.computeIfAbsent(topic, k -> new HashMap<>());
+
+                var count = categoryCounts.getOrDefault(namedEntity, 0);
+                categoryCounts.put(namedEntity, count + 1);
+            }
+        }
+    }
+
 
     // TODO: Maybe relocate this function where it makes more sense
     private static void printHelp(List<FeedsData> feedsDataArray) {
@@ -104,7 +144,7 @@ public class App {
 
         var namedEntities = new ArrayList<NamedEntity>();
         for (String candidate : candidates) {
-            var entity = map.get(candidate);
+            var entity = map.get(candidate.toLowerCase());
             if (entity == null) {
                 continue;
             }
