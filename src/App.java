@@ -50,12 +50,11 @@ public class App {
             return;
         }
 
-        List<Article> allArticles = new ArrayList<>();
-        // TODO: Populate allArticles with articles from corresponding feeds
-
         if (config.getPrintFeed()) {
             System.out.println("Printing feed(s) ");
-            // TODO: Print the fetched feed
+            for (Article article : articles) {
+                article.print();
+            }
         }
 
         if (config.getComputeNamedEntities()) {

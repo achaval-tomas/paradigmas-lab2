@@ -13,7 +13,7 @@ public class Article {
         this.link = link;
     }
 
-    void print() {
+    public void print() {
         System.out.println("Title: " + title);
         System.out.println("Description: " + description);
         System.out.println("Publication date: " + pubDate);

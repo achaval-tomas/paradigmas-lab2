@@ -48,7 +48,6 @@ public class FeedParser {
             String pubDate = getTextOfTag(item, "pubDate");
 
             Article article = new Article(title, description, link, pubDate);
-            article.print();
 
             articles.add(article);
         }
