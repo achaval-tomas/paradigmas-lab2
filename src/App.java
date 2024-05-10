@@ -20,6 +20,10 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
+        var heuristics = new ArrayList<Heuristic>();
+        heuristics.add(new CapitalizedWordHeuristic());
+        heuristics.add(new SubjectAndVerbHeuristic());
+        heuristics.add(new NotInDictionaryHeuristic());
 
         List<FeedsData> feedsDataArray = new ArrayList<>();
         try {
@@ -30,19 +34,14 @@ public class App {
         }
 
         UserInterface ui = new UserInterface();
-        Config config = ui.handleInput(args);
+        Config config = ui.handleInput(args, heuristics);
 
-        run(config, feedsDataArray);
+        run(config, feedsDataArray, heuristics);
     }
 
     // TODO: Change the signature of this function if needed
-    private static void run(Config config, List<FeedsData> feedsDataArray)
+    private static void run(Config config, List<FeedsData> feedsDataArray, List<Heuristic> heuristics)
             throws ParserConfigurationException, IOException, SAXException {
-        var heuristics = new ArrayList<Heuristic>();
-        heuristics.add(new CapitalizedWordHeuristic());
-        heuristics.add(new SubjectAndVerbHeuristic());
-        heuristics.add(new NotInDictionaryHeuristic());
-
         if (config.getPrintHelp()) {
             printHelp(feedsDataArray, heuristics);
         }
@@ -71,7 +70,7 @@ public class App {
     }
 
     private static void computeNamedEntities(Config config, List<Article> articles, Heuristic heuristic) throws IOException {
-        System.out.println("Computing named entities using " + config.getHeuristicName());
+        System.out.printf("Computing named entities using %s heuristic.\n", config.getHeuristic().getLongName());
 
         var candidates = new ArrayList<String>();
         for (Article article : articles) {

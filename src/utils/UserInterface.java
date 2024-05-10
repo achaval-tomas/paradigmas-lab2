@@ -23,7 +23,7 @@ public class UserInterface {
         optionDict = new HashMap<>();
     }
 
-    public Config handleInput(String[] args) {
+    public Config handleInput(String[] args, List<Heuristic> heuristics) {
 
         for (int i = 0; i < args.length; i++) {
             for (Option option : options) {
@@ -59,22 +59,23 @@ public class UserInterface {
         String feedKey = optionDict.get("-f");
 
         Heuristic heuristic = null;
-        String heuristicName = "";
         if (computeNamedEntities) {
-            heuristicName = optionDict.get("-ne");
-            String className = "namedEntities.heuristics." + heuristicName + "Heuristic";
+            String heuristicName = optionDict.get("-ne").trim().toLowerCase();
 
-            try {
-                heuristic = (Heuristic) Class.forName(className)
-                        .getDeclaredConstructor().newInstance();
-            } catch (ClassNotFoundException e) {
+            for (Heuristic h : heuristics) {
+                if (h.getShortName().toLowerCase().equals(heuristicName)
+                        || h.getLongName().toLowerCase().equals(heuristicName)) {
+                    heuristic = h;
+                    break;
+                }
+            }
+
+            if (heuristic == null) {
                 System.out.println("The provided heuristic does not exist");
                 System.exit(1);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
         }
 
-        return new Config(printHelp, printFeed, computeNamedEntities, feedKey, heuristic, heuristicName, statsFormat);
+        return new Config(printHelp, printFeed, computeNamedEntities, feedKey, heuristic, statsFormat);
     }
 }
