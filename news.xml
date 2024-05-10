@@ -1,320 +1,222 @@
-<rss version="2.0">
+<?xml
+        version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:dcterms="http://purl.org/dc/terms/">
     <channel>
-        <title>Economía | Página|12</title>
-        <description>
-            La economía de la Argentina y el mundo desde la crítica a la lógica dominante.
-        </description>
+        <title><![CDATA[El país | Página|12]]></title>
+        <description><![CDATA[La puja política de coyuntura y la reflexión de prestigiosos columnistas sobre la actualidad.
+]]></description>
         <link>https://www.pagina12.com.ar</link>
         <image>
-            <url>
-                https://www.pagina12.com.ar/assets/media/logos/logo_rss.png
-            </url>
-            <title>Economía | Página|12</title>
+            <url>https://www.pagina12.com.ar/assets/media/logos/logo_rss.png</url>
+            <title>El país | Página|12</title>
             <link>https://www.pagina12.com.ar</link>
         </image>
-        <generator/>
-        <lastBuildDate>Fri, 03 May 2024 12:59:55 GMT</lastBuildDate>
-        <atom:link href="https://www.pagina12.com.ar/rss/secciones/economia/notas" rel="self"
+        <generator></generator>
+        <lastBuildDate>Fri, 10 May 2024 00:08:16 GMT</lastBuildDate>
+        <atom:link href="https://www.pagina12.com.ar/rss/secciones/el-pais/notas" rel="self"
                    type="application/rss+xml"/>
-        <pubDate>Fri, 03 May 2024 08:00:01 GMT</pubDate>
-        <copyright>2024 - Página12</copyright>
-        <language>es-ar</language>
-        <managingEditor>infop12@pagina12.com.ar (Editor)</managingEditor>
-        <webMaster>webmaster@pagina12.com.ar (Webmaster)</webMaster>
+        <pubDate>Thu, 09 May 2024 23:10:48 GMT</pubDate>
+        <copyright><![CDATA[2024 - Página12]]></copyright>
+        <language><![CDATA[es-ar]]></language>
+        <managingEditor><![CDATA[infop12@pagina12.com.ar (Editor)]]></managingEditor>
+        <webMaster><![CDATA[webmaster@pagina12.com.ar (Webmaster)]]></webMaster>
         <item>
-            <title>
-                Dólar blue hoy, dólar hoy: a cuánto cotizan el viernes 03 de mayo
-            </title>
-            <link>
-                https://www.pagina12.com.ar/733682-dolar-blue-hoy-dolar-hoy-a-cuanto-cotizan-el-viernes-03-de-m
-            </link>
+            <title><![CDATA[Piden condenas a los responsables de lavar dinero robado a un desaparecido]]></title>
+            <description>
+                <![CDATA[LaUIF reclamó penas de prisión para cuatro hijos del represor Miguel Save, ya fallecido, que buscaron legalizar el dinero robado al desaparecido Alberto Mechoso Méndez.]]></description>
+            <link>https://www.pagina12.com.ar/735470-piden-condenas-a-los-responsables-de-lavar-dinero-robado-a-u</link>
             <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733682-dolar-blue-hoy-dolar-hoy-a-cuanto-cotizan-el-viernes-03-de-m
+                https://www.pagina12.com.ar/735470-piden-condenas-a-los-responsables-de-lavar-dinero-robado-a-u
             </guid>
-            <dc:creator>Página/12</dc:creator>
-            <pubDate>Fri, 03 May 2024 08:00:01 GMT</pubDate>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 23:10:48 GMT</pubDate>
             <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/pexels-karolina-grabowska-4386150_0.jpg?itok=4zdhf8Tj"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>El dólar blue</dcterms:alternative>
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837568-side_0.jpg?itok=DTZYs_ek"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>Se trata de hijos de un represor que le robó dinero a un detenido uruguayo 
+            </dcterms:alternative>
             <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/pexels-karolina-grabowska-4386150_0.jpg?itok=4zdhf8Tj"
-                type="image/jpeg" medium="image">
-                <media:title>
-                    Dólar blue hoy, dólar hoy: a cuánto cotizan el viernes 03 de mayo
-                </media:title>
-                <media:text>
-                    Dólar blue hoy, dólar hoy: a cuánto cotizan el viernes 03 de mayo
-                </media:text>
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837568-side_0.jpg?itok=DTZYs_ek"
+                    type="image/jpeg" medium="image"></media:content>
+        </item>
+        <item>
+            <title><![CDATA[La vuelta de "Pepín" Rodríguez Simón quedó en suspenso]]></title>
+            <description>
+                <![CDATA[El martes, el ex asesor de Mauricio Macri anunció que quería volver después de tres años de estar prófugo en Uruguay. Contra todos los pronósticos, la jueza Servini resolvió que no será detenido si regresa al país.]]></description>
+            <link>https://www.pagina12.com.ar/735464-la-vuelta-de-pepin-rodriguez-simon-quedo-en-suspenso</link>
+            <guid isPermaLink="false">
+                https://www.pagina12.com.ar/735464-la-vuelta-de-pepin-rodriguez-simon-quedo-en-suspenso
+            </guid>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 22:45:26 GMT</pubDate>
+            <enclosure
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/838015-188850-13-a-dantefernandez-20-281-29_0.jpg?itok=2PWNcovF"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>El fiscal Marijuan apeló la exención de prisión del operador macrista
+            </dcterms:alternative>
+            <media:content
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/838015-188850-13-a-dantefernandez-20-281-29_0.jpg?itok=2PWNcovF"
+                    type="image/jpeg" medium="image"></media:content>
+        </item>
+        <item>
+            <title><![CDATA[Los diccionarios de Javier Milei]]></title>
+            <description>
+                <![CDATA[Al igual que cientos de miles de personas que no se movilizaron a sus empleos, el Presidente se quedó en Casa Rosada y desde allí intentó minimizar la huelga convocada por la CGT y las dos CTA. ]]></description>
+            <link>https://www.pagina12.com.ar/735447-los-diccionarios-de-javier-milei</link>
+            <guid isPermaLink="false">https://www.pagina12.com.ar/735447-los-diccionarios-de-javier-milei</guid>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 22:05:17 GMT</pubDate>
+            <enclosure
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837979-whatsapp-20image-202024-05-09-20at-2018-12-22.jpeg?itok=2wBYtlGQ"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>El Presidente se dedicó a buscar otras acepciones al paro general de los trabajadores
+            </dcterms:alternative>
+            <media:content
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837979-whatsapp-20image-202024-05-09-20at-2018-12-22.jpeg?itok=2wBYtlGQ"
+                    type="image/jpeg" medium="image"></media:content>
+        </item>
+        <item>
+            <title><![CDATA["El paro les dolió"]]></title>
+            <description>
+                <![CDATA[En conferencia de prensa, los representantes de la central sindical celebraron la contundencia de la medida de fuerza. Además, señalaron que las declaraciones del presidente Milei y sus ministros se deben al éxito de la huelga.]]></description>
+            <link>https://www.pagina12.com.ar/735383-el-paro-les-dolio</link>
+            <guid isPermaLink="false">https://www.pagina12.com.ar/735383-el-paro-les-dolio</guid>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 18:41:08 GMT</pubDate>
+            <enclosure
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837899-whatsapp-20image-202024-05-09-20at-203-25-29-20pm.jpeg?itok=T4IDmPsy"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>La CGT dura contra el Gobierno</dcterms:alternative>
+            <media:content
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837899-whatsapp-20image-202024-05-09-20at-203-25-29-20pm.jpeg?itok=T4IDmPsy"
+                    type="image/jpeg" medium="image"></media:content>
+        </item>
+        <item>
+            <title><![CDATA[Imágenes de la contundencia del paro de la CGT]]></title>
+            <link>https://www.pagina12.com.ar/735345-imagenes-de-la-contundencia-del-paro-de-la-cgt</link>
+            <guid isPermaLink="false">
+                https://www.pagina12.com.ar/735345-imagenes-de-la-contundencia-del-paro-de-la-cgt
+            </guid>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 15:56:59 GMT</pubDate>
+            <enclosure
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837816-whatsapp-20image-202024-05-09-20at-2011-37-11-20-281-29.jpeg?itok=cQDHAzjo"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>Galería de fotos</dcterms:alternative>
+            <media:content
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837816-whatsapp-20image-202024-05-09-20at-2011-37-11-20-281-29.jpeg?itok=cQDHAzjo"
+                    type="image/jpeg" medium="image"></media:content>
+        </item>
+        <item>
+            <title><![CDATA[El paro en fotos: la Ciudad vacía por la huelga de la CGT]]></title>
+            <link>https://www.pagina12.com.ar/735343-el-paro-en-fotos-la-ciudad-vacia-por-la-huelga-de-la-cgt</link>
+            <guid isPermaLink="false">
+                https://www.pagina12.com.ar/735343-el-paro-en-fotos-la-ciudad-vacia-por-la-huelga-de-la-cgt
+            </guid>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 15:53:29 GMT</pubDate>
+            <enclosure
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837842-gnjknrywcaaompz.jpeg?itok=TmMYFftt"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>Las imágenes que compartió la central</dcterms:alternative>
+            <media:content
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837842-gnjknrywcaaompz.jpeg?itok=TmMYFftt"
+                    type="image/jpeg" medium="image">
+                <media:title>Estación de Constitución.</media:title>
+                <media:text>Estación de Constitución.</media:text>
             </media:content>
         </item>
         <item>
-            <title>La OCDE anticipa una fuerte recesión</title>
-            <link>
-                https://www.pagina12.com.ar/733592-la-ocde-anticipa-una-fuerte-recesion
-            </link>
+            <title><![CDATA[Javier Milei ante el segundo paro general contra el ajuste y la Ley Bases]]></title>
+            <link>https://www.pagina12.com.ar/734343-javier-milei-de-gira-en-estados-unidos-la-agenda-de-viaje-y-</link>
             <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733592-la-ocde-anticipa-una-fuerte-recesion
+                https://www.pagina12.com.ar/734343-javier-milei-de-gira-en-estados-unidos-la-agenda-de-viaje-y-
             </guid>
-            <dc:creator>Mara Pedrazzoli</dc:creator>
-            <pubDate>Fri, 03 May 2024 03:01:00 GMT</pubDate>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 14:01:15 GMT</pubDate>
             <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836064-whatsapp-20image-202024-05-02-20at-2017-24-14.jpeg?itok=vP-WEWEl"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>
-                La economía argentina caería 3,3 por ciento este año
-            </dcterms:alternative>
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836887-793258-1200-1700078746231115676-0.jpg?itok=HxYTXUkv"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>El Presidente y la medida de fuerza de la CGT</dcterms:alternative>
             <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836064-whatsapp-20image-202024-05-02-20at-2017-24-14.jpeg?itok=vP-WEWEl"
-                type="image/jpeg" medium="image">
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836887-793258-1200-1700078746231115676-0.jpg?itok=HxYTXUkv"
+                    type="image/jpeg" medium="image"></media:content>
+        </item>
+        <item>
+            <title><![CDATA[La tierra para todos]]></title>
+            <link>https://www.pagina12.com.ar/735310-la-tierra-para-todos</link>
+            <guid isPermaLink="false">https://www.pagina12.com.ar/735310-la-tierra-para-todos</guid>
+            <dc:creator><![CDATA[Sergio Elguezábal]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 13:42:21 GMT</pubDate>
+            <enclosure
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837818-772376-ro02fo0228web-20-281-29_0.jpeg?itok=Ajrtoz1K"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>El desafío de los cinco cambios extraordinarios</dcterms:alternative>
+            <media:content
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837818-772376-ro02fo0228web-20-281-29_0.jpeg?itok=Ajrtoz1K"
+                    type="image/jpeg" medium="image"></media:content>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Paro de la CGT del 9 de mayo: qué hizo la Anses con el pago a jubilados, pensionados y beneficiarios de la AUH]]></title>
+            <description>
+                <![CDATA[Qué ocurre con los titulares de la Asignación Universal por Hijo (AUH), Pensiones No Contributivas (PNC), Jubilados de la mínima y pensionados, entre otros. Los bancos están cerrados, por lo cual no se podrán realizar trámites de manera presencial.]]></description>
+            <link>https://www.pagina12.com.ar/735301-paro-de-la-cgt-del-9-de-mayo-que-hizo-la-anses-con-el-pago-a</link>
+            <guid isPermaLink="false">
+                https://www.pagina12.com.ar/735301-paro-de-la-cgt-del-9-de-mayo-que-hizo-la-anses-con-el-pago-a
+            </guid>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 12:36:19 GMT</pubDate>
+            <enclosure
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837810-na02fo01-11.jpg?itok=byjXhdsx"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>¿Hoy se cobra?</dcterms:alternative>
+            <media:content
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837810-na02fo01-11.jpg?itok=byjXhdsx"
+                    type="image/jpeg" medium="image"></media:content>
+        </item>
+        <item>
+            <title>
+                <![CDATA[Paro de la CGT del 9 de mayo: qué líneas de colectivos funcionan en Buenos Aires y qué pasa con trenes y subtes]]></title>
+            <description>
+                <![CDATA[Todos los gremios del transporte adhieren a la huelga. Los servicios que se ven afectados por la medida de fuerza.]]></description>
+            <link>https://www.pagina12.com.ar/735291-paro-de-la-cgt-del-9-de-mayo-que-lineas-de-colectivos-funcio</link>
+            <guid isPermaLink="false">
+                https://www.pagina12.com.ar/735291-paro-de-la-cgt-del-9-de-mayo-que-lineas-de-colectivos-funcio
+            </guid>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 11:37:58 GMT</pubDate>
+            <enclosure
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837805-whatsapp-20image-202024-05-09-20at-2010-39-23.jpeg?itok=pupsqCec"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>Amplia adhesión a la medida de fuerza</dcterms:alternative>
+            <media:content
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837805-whatsapp-20image-202024-05-09-20at-2010-39-23.jpeg?itok=pupsqCec"
+                    type="image/jpeg" medium="image">
                 <media:credit>NA</media:credit>
-                <media:title>
-                    La OCDE ponderó algunas de las medidas de ajuste aplicadas por Caputo.
-                </media:title>
-                <media:text>
-                    La OCDE ponderó algunas de las medidas de ajuste aplicadas por Caputo.
-                </media:text>
+                <media:title>Los gremios del transporte adhieren al paro</media:title>
+                <media:text>Los gremios del transporte adhieren al paro</media:text>
             </media:content>
         </item>
         <item>
-            <title>
-                La licuadora funcionando a full para fulminar los depósitos de los ahorristas
-            </title>
+            <title><![CDATA[Paro de la CGT del 9 de mayo: escuelas sin clases y con aulas vacías]]></title>
             <description>
-                El Banco Central volvió a bajar la tasa de interés y la llevó del 60 al 50 por ciento anual, equivalente
-                a 4,2 por ciento mensual, la mitad de la inflación.
-            </description>
-            <link>
-                https://www.pagina12.com.ar/733595-la-licuadora-funcionando-a-full-para-fulminar-los-depositos-
-            </link>
+                <![CDATA[La medida de fuerza, a la que se sumaron también las dos CTA, tiene fuerte impacto en las escuelas públicas. El gremio des maestros privados también convocó al paro.]]></description>
+            <link>https://www.pagina12.com.ar/735288-paro-de-la-cgt-escuelas-sin-clases-y-con-aulas-vacias</link>
             <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733595-la-licuadora-funcionando-a-full-para-fulminar-los-depositos-
+                https://www.pagina12.com.ar/735288-paro-de-la-cgt-escuelas-sin-clases-y-con-aulas-vacias
             </guid>
-            <dc:creator>Página/12</dc:creator>
-            <pubDate>Fri, 03 May 2024 03:01:00 GMT</pubDate>
+            <dc:creator><![CDATA[Página/12]]></dc:creator>
+            <pubDate>Thu, 09 May 2024 11:10:39 GMT</pubDate>
             <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836108-12a-20sandra.jpg?itok=GHrKGGu0"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>
-                El Banco Central aplicó otra reducción de la tasa de interés de referencia
-            </dcterms:alternative>
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837803-828624-4-a-na-20-281-29_0.jpg?itok=iql3Z-8U"
+                    length="0" type="image/jpeg"/>
+            <dcterms:alternative>Los docentes adhieren a la huelga</dcterms:alternative>
             <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836108-12a-20sandra.jpg?itok=GHrKGGu0"
-                type="image/jpeg" medium="image">
-                <media:credit>Sandra Cartasso</media:credit>
-                <media:title>
-                    El equipo económico va a fondo con la lógica de licuar el stock de pesos de la economía y uno de los
-                    principales impactos es sobre las tenencias de plazo fijo.
-                </media:title>
-                <media:text>
-                    El equipo económico va a fondo con la lógica de licuar el stock de pesos de la economía y uno de los
-                    principales impactos es sobre las tenencias de plazo fijo.
-                </media:text>
-            </media:content>
-        </item>
-        <item>
-            <title>El lunes no habrá paro de transporte</title>
-            <link>
-                https://www.pagina12.com.ar/733504-el-lunes-no-habra-paro-de-transporte
-            </link>
-            <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733504-el-lunes-no-habra-paro-de-transporte
-            </guid>
-            <dc:creator>Página/12</dc:creator>
-            <pubDate>Fri, 03 May 2024 03:01:00 GMT</pubDate>
-            <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836031-817387-trenes-20na-20-281-29.jpg?itok=KuVXJg5F"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>La CATT afirmó que solo organizarán asambleas</dcterms:alternative>
-            <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836031-817387-trenes-20na-20-281-29.jpg?itok=KuVXJg5F"
-                type="image/jpeg" medium="image">
-                <media:credit>NA</media:credit>
-            </media:content>
-        </item>
-        <item>
-            <title>La Nación rechaza recargos de municipios</title>
-            <link>
-                https://www.pagina12.com.ar/733523-la-nacion-rechaza-recargos-de-municipios
-            </link>
-            <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733523-la-nacion-rechaza-recargos-de-municipios
-            </guid>
-            <dc:creator>Página/12</dc:creator>
-            <pubDate>Fri, 03 May 2024 03:01:00 GMT</pubDate>
-            <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836041-whatsapp-20image-202021-04-19-20at-2017-47-54.jpeg?itok=xuYcXvbh"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>
-                Tasa de hasta 2,5 por ciento sobre combustibles en algunos distritos
-            </dcterms:alternative>
-            <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836041-whatsapp-20image-202021-04-19-20at-2017-47-54.jpeg?itok=xuYcXvbh"
-                type="image/jpeg" medium="image">
-                <media:title>Varios municipios bonaerenses ya cobran la tasa.</media:title>
-                <media:text>Varios municipios bonaerenses ya cobran la tasa.</media:text>
-            </media:content>
-        </item>
-        <item>
-            <title>
-                "La única manera de estabilizar es con años de recesión"
-            </title>
-            <description>
-                Dueño de Plaza Logística y hombre clave en la campaña libertaria, blanqueó que la crisis es el plan de
-                orden del Gobierno. "Uno tiene que transitar un momento muy duro para poder ver la luz", expresó.
-            </description>
-            <link>
-                https://www.pagina12.com.ar/733550-la-unica-manera-de-estabilizar-son-anos-de-recesion
-            </link>
-            <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733550-la-unica-manera-de-estabilizar-son-anos-de-recesion
-            </guid>
-            <dc:creator>Página/12</dc:creator>
-            <pubDate>Fri, 03 May 2024 03:01:00 GMT</pubDate>
-            <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/835979-bastitta_0.jpg?itok=iA6JvGO2"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>
-                Eduardo Bastitta Harriet, el empresario y asesor más afín a Milei
-            </dcterms:alternative>
-            <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/835979-bastitta_0.jpg?itok=iA6JvGO2"
-                type="image/jpeg" medium="image"/>
-        </item>
-        <item>
-            <title>Menos fondos para la coparticipación</title>
-            <link>
-                https://www.pagina12.com.ar/733604-menos-fondos-para-la-coparticipacion
-            </link>
-            <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733604-menos-fondos-para-la-coparticipacion
-            </guid>
-            <dc:creator>Mara Pedrazzoli</dc:creator>
-            <pubDate>Fri, 03 May 2024 03:01:00 GMT</pubDate>
-            <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836075-whatsapp-20image-202024-05-02-20at-205-23-08-20pm-20-281-29.jpeg?itok=OZ-J4mVo"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>
-                Presión adicional a las provincias para aprobar el paquete fiscal
-            </dcterms:alternative>
-            <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836075-whatsapp-20image-202024-05-02-20at-205-23-08-20pm-20-281-29.jpeg?itok=OZ-J4mVo"
-                type="image/jpeg" medium="image">
-                <media:credit>Bernardino Avila</media:credit>
-            </media:content>
-        </item>
-        <item>
-            <title>Caen los ingresos tributarios</title>
-            <description>
-                Los impuestos ligados a la actividad interna tuvieron una retracción real del 16% en abril. Suben los
-                que gravan importaciones por la megadevaluación de diciembre.
-            </description>
-            <link>
-                https://www.pagina12.com.ar/733638-caen-los-ingresos-tributarios
-            </link>
-            <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733638-caen-los-ingresos-tributarios
-            </guid>
-            <dc:creator>Raúl Dellatorre</dc:creator>
-            <pubDate>Fri, 03 May 2024 03:01:00 GMT</pubDate>
-            <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836178-whatsapp-20image-202024-05-02-20at-205-22-56-20pm.jpeg?itok=17kgemLL"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>
-                La recesión sigue golpeando fuerte a la recaudación fiscal
-            </dcterms:alternative>
-            <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/836178-whatsapp-20image-202024-05-02-20at-205-22-56-20pm.jpeg?itok=17kgemLL"
-                type="image/jpeg" medium="image">
-                <media:credit>Sandra Cartasso</media:credit>
-                <media:title>
-                    Sin el aporte del impuesto PAIS y las retenciones, los ingresos de la AFIP se estarían derrumbando
-                </media:title>
-                <media:text>
-                    Sin el aporte del impuesto PAIS y las retenciones, los ingresos de la AFIP se estarían derrumbando
-                </media:text>
-            </media:content>
-        </item>
-        <item>
-            <title>
-                El Banco Central volvió a bajar la tasa de interés y ahora es del 50 por ciento
-            </title>
-            <description>
-                Por quinta vez desde diciembre, la autoridad monetaria reduce los rendimientos de los plazos fijos por
-                las expectativas de que la inflación sea de un dígito. La semana pasada ya había bajado las tasas al 60
-                por ciento.
-            </description>
-            <link>
-                https://www.pagina12.com.ar/733469-el-banco-central-volvio-a-bajar-la-tasa-de-interes-y-ahora-e
-            </link>
-            <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733469-el-banco-central-volvio-a-bajar-la-tasa-de-interes-y-ahora-e
-            </guid>
-            <dc:creator>Página/12</dc:creator>
-            <pubDate>Thu, 02 May 2024 16:26:22 GMT</pubDate>
-            <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/835985-whatsapp-20image-202024-05-02-20at-2013-20-54.jpeg?itok=8TnS8_x_"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>El Gobierno acelera la licuadora</dcterms:alternative>
-            <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/835985-whatsapp-20image-202024-05-02-20at-2013-20-54.jpeg?itok=8TnS8_x_"
-                type="image/jpeg" medium="image">
-                <media:credit>Sandra Cartasso</media:credit>
-            </media:content>
-        </item>
-        <item>
-            <title>La venta de autos volvió a caer en abril</title>
-            <link>
-                https://www.pagina12.com.ar/733287-la-venta-de-autos-volvio-a-caer-en-abril
-            </link>
-            <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733287-la-venta-de-autos-volvio-a-caer-en-abril
-            </guid>
-            <dc:creator>Página/12</dc:creator>
-            <pubDate>Thu, 02 May 2024 03:01:00 GMT</pubDate>
-            <enclosure url="https://images.pagina12.com.ar/styles/width960/public/2024-05/835859-11-b.jpg?itok=cqkQoiVp"
-                       length="0" type="image/jpeg"/>
-            <dcterms:alternative>
-                Bajó 5,9 por ciento. También retrocedió la venta de motos
-            </dcterms:alternative>
-            <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/835859-11-b.jpg?itok=cqkQoiVp"
-                type="image/jpeg" medium="image">
-                <media:title>
-                    En lo que va del año la caída interanual es del 24,4 por ciento.
-                </media:title>
-                <media:text>
-                    En lo que va del año la caída interanual es del 24,4 por ciento.
-                </media:text>
-            </media:content>
-        </item>
-        <item>
-            <title>La operación “ficción” para esconder la crisis</title>
-            <description>
-                Filtraron un volumen falso de alimentos importados que habría equilibrado los precios, cuando en
-                realidad las empresas aseguran que sólo la recesión explica la desaceleración. Mientras Caputo vende una
-                macro estable, hay un derrumbe de las inversiones y hay 2000 millones de dólares menos de la cosecha por
-                el campo entiende que el dólar quieto es un invento.
-            </description>
-            <link>
-                https://www.pagina12.com.ar/733299-la-operacion-ficcion-para-esconder-la-crisis
-            </link>
-            <guid isPermaLink="false">
-                https://www.pagina12.com.ar/733299-la-operacion-ficcion-para-esconder-la-crisis
-            </guid>
-            <dc:creator>Leandro Renou</dc:creator>
-            <pubDate>Thu, 02 May 2024 03:01:00 GMT</pubDate>
-            <enclosure
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/835712-15-a-na.jpg?itok=QVqGqG_6"
-                length="0" type="image/jpeg"/>
-            <dcterms:alternative>
-                El Gobierno armó un relato para instalar un escenario de mejora económica que no se ve en cifras
-            </dcterms:alternative>
-            <media:content
-                url="https://images.pagina12.com.ar/styles/width960/public/2024-05/835712-15-a-na.jpg?itok=QVqGqG_6"
-                type="image/jpeg" medium="image">
-                <media:credit>NA</media:credit>
-            </media:content>
+                    url="https://images.pagina12.com.ar/styles/width960/public/2024-05/837803-828624-4-a-na-20-281-29_0.jpg?itok=iql3Z-8U"
+                    type="image/jpeg" medium="image"></media:content>
         </item>
     </channel>
 </rss>

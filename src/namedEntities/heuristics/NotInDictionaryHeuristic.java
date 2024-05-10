@@ -49,21 +49,34 @@ public class NotInDictionaryHeuristic implements Heuristic {
     }
 
     public List<String> extractCandidates(String text) {
-        text = text.replaceAll("[-+.^:,\"]", "");
         text = Normalizer.normalize(text, Normalizer.Form.NFD);
         text = text.replaceAll("\\p{M}", "");
-        text = text.toLowerCase();
 
-        Pattern pattern = Pattern.compile("[A-Za-z]+");
+        Pattern pattern = Pattern.compile("(?:[A-Za-z]+ ?)+");
         Matcher matcher = pattern.matcher(text);
 
         List<String> candidates = new ArrayList<>();
 
         while (matcher.find()) {
-            String word = matcher.group();
+            String consecutiveWords = matcher.group();
 
-            if (isNamedEntity(word)) {
-                candidates.add(word);
+            var candidateParts = new ArrayList<String>();
+            for (String word : consecutiveWords.split(" ")) {
+                if (isNamedEntity(word)) {
+                    candidateParts.add(word);
+                } else {
+                    if (!candidateParts.isEmpty()) {
+                        var candidate = String.join(" ", candidateParts);
+                        candidateParts.clear();
+                        candidates.add(candidate);
+                    }
+                }
+            }
+
+            if (!candidateParts.isEmpty()) {
+                var candidate = String.join(" ", candidateParts);
+                candidateParts.clear();
+                candidates.add(candidate);
             }
         }
 
@@ -71,6 +84,8 @@ public class NotInDictionaryHeuristic implements Heuristic {
     }
 
     public boolean isNamedEntity(String word) {
+        word = word.toLowerCase();
+
         if (dictionary.contains(word)) {
             return false;
         }
