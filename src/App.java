@@ -91,7 +91,7 @@ public class App {
             categoryCounts.put(namedEntity, count + 1);
         }
 
-        for (var category : statsByCategory.keySet()){
+        for (var category : statsByCategory.keySet()) {
             System.out.printf("Category: %s\n", category);
             var stats = statsByCategory.get(category);
             for (var entity : stats.keySet()) {
@@ -140,18 +140,18 @@ public class App {
     }
 
     private static List<NamedEntity> extractNamedEntities(List<String> candidates) throws IOException {
-        HashMap<String, NamedEntity> map = JSONParser.parseJsonDict("src/data/dictionary.json");
+        HashMap<String, NamedEntity> namedEntitiesByKeywords = JSONParser.parseJsonDict("src/data/dictionary.json");
 
         var namedEntities = new ArrayList<NamedEntity>();
         for (String candidate : candidates) {
-            var entity = map.get(candidate.toLowerCase());
+            var entity = namedEntitiesByKeywords.get(StringUtils.simplify(candidate));
             if (entity == null) {
                 continue;
             }
+
             namedEntities.add(entity);
         }
-        
+
         return namedEntities;
     }
-
 }

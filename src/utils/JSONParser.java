@@ -40,24 +40,26 @@ public class JSONParser {
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             NamedEntity namedEntity = parseJsonNamedEntity(jsonObject);
-
-            if (namedEntity != null) {
-                namedEntities.add(namedEntity);
+            if (namedEntity == null) {
+                continue;
             }
+
+            namedEntities.add(namedEntity);
         }
 
-        var map = new HashMap<String, NamedEntity>();
+        var namedEntitiesByKeywords = new HashMap<String, NamedEntity>();
 
         for (NamedEntity namedEntity : namedEntities) {
             for (String keyword : namedEntity.getKeywords()) {
-                map.put(keyword, namedEntity);
+                keyword = StringUtils.simplify(keyword);
+                namedEntitiesByKeywords.put(keyword, namedEntity);
             }
         }
 
-        return map;
+        return namedEntitiesByKeywords;
     }
 
-    static private NamedEntity parseJsonNamedEntity(JSONObject jsonObject) throws  IOException {
+    static private NamedEntity parseJsonNamedEntity(JSONObject jsonObject) {
         String label = jsonObject.getString("label");
         String category = jsonObject.getString("Category");
         JSONArray topicsJson = jsonObject.getJSONArray("Topics");
@@ -66,14 +68,14 @@ public class JSONParser {
         var topics = new ArrayList<String>();
         for (var topic : topicsJson) {
             if (topic instanceof String) {
-                topics.add((String)topic);
+                topics.add((String) topic);
             }
         }
 
         var keywords = new ArrayList<String>();
         for (var keyword : keywordsJson) {
             if (keyword instanceof String) {
-                keywords.add(((String)keyword).toLowerCase());
+                keywords.add((String) keyword);
             }
         }
 
