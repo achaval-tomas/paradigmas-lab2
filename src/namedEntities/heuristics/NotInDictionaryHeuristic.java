@@ -83,7 +83,22 @@ public class NotInDictionaryHeuristic implements Heuristic {
         return candidates;
     }
 
-    public boolean isNamedEntity(String word) {
+    @Override
+    public String getShortName() {
+        return "NID";
+    }
+
+    @Override
+    public String getLongName() {
+        return "Not in Dictionary";
+    }
+
+    @Override
+    public String getDescription() {
+        return "match words not found in a common spanish dictionary.";
+    }
+
+    private boolean isNamedEntity(String word) {
         word = word.toLowerCase();
 
         if (dictionary.contains(word)) {

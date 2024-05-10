@@ -22,4 +22,19 @@ public class SubjectAndVerbHeuristic implements Heuristic {
         }
         return candidates;
     }
+
+    @Override
+    public String getShortName() {
+        return "SAV";
+    }
+
+    @Override
+    public String getLongName() {
+        return "Subject and Verb";
+    }
+
+    @Override
+    public String getDescription() {
+        return "match subjects that are followed by verbs.";
+    }
 }

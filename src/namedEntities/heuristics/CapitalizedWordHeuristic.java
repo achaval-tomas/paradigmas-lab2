@@ -23,4 +23,19 @@ public class CapitalizedWordHeuristic implements Heuristic {
         }
         return candidates;
     }
+
+    @Override
+    public String getShortName() {
+        return "CW";
+    }
+
+    @Override
+    public String getLongName() {
+        return "Capitalized Word";
+    }
+
+    @Override
+    public String getDescription() {
+        return "match connected capitalized words.";
+    }
 }

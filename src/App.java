@@ -1,8 +1,11 @@
 import feed.Article;
 import feed.FeedParser;
+import namedEntities.heuristics.CapitalizedWordHeuristic;
 import namedEntities.heuristics.Heuristic;
 import namedEntities.NamedEntity;
 
+import namedEntities.heuristics.NotInDictionaryHeuristic;
+import namedEntities.heuristics.SubjectAndVerbHeuristic;
 import org.xml.sax.SAXException;
 import utils.*;
 
@@ -35,6 +38,14 @@ public class App {
     // TODO: Change the signature of this function if needed
     private static void run(Config config, List<FeedsData> feedsDataArray)
             throws ParserConfigurationException, IOException, SAXException {
+        var heuristics = new ArrayList<Heuristic>();
+        heuristics.add(new CapitalizedWordHeuristic());
+        heuristics.add(new SubjectAndVerbHeuristic());
+        heuristics.add(new NotInDictionaryHeuristic());
+
+        if (config.getPrintHelp()) {
+            printHelp(feedsDataArray, heuristics);
+        }
 
         byte[] encoded = Files.readAllBytes(Paths.get("news.xml"));
         String xml = new String(encoded);
@@ -116,7 +127,7 @@ public class App {
 
 
     // TODO: Maybe relocate this function where it makes more sense
-    private static void printHelp(List<FeedsData> feedsDataArray) {
+    private static void printHelp(List<FeedsData> feedsDataArray, List<Heuristic> heuristics) {
         System.out.println("Usage: make run ARGS=\"[OPTION]\"");
         System.out.println("Options:");
         System.out.println("  -h, --help: Show this help message and exit");
@@ -128,10 +139,12 @@ public class App {
         }
         System.out.println("  -ne, --named-entity <heuristicName>: Use the specified heuristic to extract");
         System.out.println("                                       named entities");
-        System.out.println("                                       Available heuristic names are: ");
-        System.out.println("                                       CapitalizedWord: Match connected capitalized words.");
-        System.out.println("                                       NotInDictionary: Match words not found in a common spanish dictionary.");
-        System.out.println("                                       SubjectAndVerb: Match subjects that are followed by verbs.");
+
+        System.out.println("        Available heuristic names are: ");
+        for (Heuristic h : heuristics) {
+            System.out.printf("                %s, \"%s\": %s\n", h.getShortName(), h.getLongName(), h.getDescription());
+        }
+
         System.out.println("  -pf, --print-feed:                   Print the fetched feed");
         System.out.println("  -sf, --stats-format <format>:        Print the stats in the specified format");
         System.out.println("                                       Available formats are: ");

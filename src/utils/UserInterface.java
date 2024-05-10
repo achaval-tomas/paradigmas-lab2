@@ -43,6 +43,7 @@ public class UserInterface {
             }
         }
 
+        boolean printHelp = optionDict.containsKey("-h");
         boolean printFeed = optionDict.containsKey("-pf");
         boolean computeNamedEntities = optionDict.containsKey("-ne");
         StatisticsFormat statsFormat = StatisticsFormat.Category;
@@ -74,6 +75,6 @@ public class UserInterface {
             }
         }
 
-        return new Config(printFeed, computeNamedEntities, feedKey, heuristic, heuristicName, statsFormat);
+        return new Config(printHelp, printFeed, computeNamedEntities, feedKey, heuristic, heuristicName, statsFormat);
     }
 }
