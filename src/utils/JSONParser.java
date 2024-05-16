@@ -1,10 +1,6 @@
 package utils;
 
-import namedEntities.NamedEntity;
-import namedEntities.PersonEntity;
-import namedEntities.LocationEntity;
-import namedEntities.OrganizationEntity;
-import namedEntities.OtherEntity;
+import namedEntities.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

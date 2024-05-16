@@ -6,16 +6,16 @@ public class Config {
     private boolean printHelp;
     private boolean printFeed = false;
     private boolean computeNamedEntities = false;
-    private String feedKey;
+    private FeedsData feedData;
     private Heuristic heuristic;
     private StatisticsFormat statsFormat;
 
-    public Config(boolean printHelp, boolean printFeed, boolean computeNamedEntities, String feedKey,
+    public Config(boolean printHelp, boolean printFeed, boolean computeNamedEntities, FeedsData feedData,
                   Heuristic heuristic, StatisticsFormat statsFormat) {
         this.printHelp = printHelp;
         this.printFeed = printFeed;
         this.computeNamedEntities = computeNamedEntities;
-        this.feedKey = feedKey;
+        this.feedData = feedData;
         this.heuristic = heuristic;
         this.statsFormat = statsFormat;
     }
@@ -32,8 +32,8 @@ public class Config {
         return computeNamedEntities;
     }
 
-    public String getFeedKey() {
-        return feedKey;
+    public FeedsData getFeedData() {
+        return feedData;
     }
 
     public Heuristic getHeuristic() {

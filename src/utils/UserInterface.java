@@ -2,9 +2,11 @@ package utils;
 
 import namedEntities.heuristics.Heuristic;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class UserInterface {
 
@@ -56,7 +58,33 @@ public class UserInterface {
             };
         }
 
+        if (!optionDict.containsKey("-f")) {
+            System.out.println("You have to specify a feed with flag \"-f\"");
+            System.exit(1);
+        }
+
+        List<FeedsData> feedsData = null;
+        try {
+            feedsData = JSONParser.parseJsonFeedsData("src/data/feeds.json");
+        } catch (IOException e) {
+            System.out.println("Failed to read file with message: " + e.getMessage());
+            System.exit(1);
+        }
+
         String feedKey = optionDict.get("-f");
+        FeedsData chosenFeed = null;
+
+        for (var feedData : feedsData) {
+            if (Objects.equals(feedData.getLabel(), feedKey)) {
+                chosenFeed = feedData;
+                break;
+            }
+        }
+
+        if (chosenFeed == null) {
+            System.out.println("The provided feed does not exist");
+            System.exit(1);
+        }
 
         Heuristic heuristic = null;
         if (computeNamedEntities) {
@@ -76,6 +104,6 @@ public class UserInterface {
             }
         }
 
-        return new Config(printHelp, printFeed, computeNamedEntities, feedKey, heuristic, statsFormat);
+        return new Config(printHelp, printFeed, computeNamedEntities, chosenFeed, heuristic, statsFormat);
     }
 }

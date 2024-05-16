@@ -1,9 +1,8 @@
 import feed.Article;
 import feed.FeedParser;
+import namedEntities.NamedEntity;
 import namedEntities.heuristics.CapitalizedWordHeuristic;
 import namedEntities.heuristics.Heuristic;
-import namedEntities.NamedEntity;
-
 import namedEntities.heuristics.NotInDictionaryHeuristic;
 import namedEntities.heuristics.SubjectAndVerbHeuristic;
 import org.xml.sax.SAXException;
@@ -11,8 +10,6 @@ import utils.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,15 +36,21 @@ public class App {
         run(config, feedsDataArray, heuristics);
     }
 
-    // TODO: Change the signature of this function if needed
     private static void run(Config config, List<FeedsData> feedsDataArray, List<Heuristic> heuristics)
             throws ParserConfigurationException, IOException, SAXException {
         if (config.getPrintHelp()) {
             printHelp(feedsDataArray, heuristics);
+            return;
         }
 
-        byte[] encoded = Files.readAllBytes(Paths.get("news.xml"));
-        String xml = new String(encoded);
+        String xml;
+        try {
+            xml = FeedParser.fetchFeed(config.getFeedData().getUrl());
+        } catch (Exception e) {
+            System.out.println("Failed to fetch feed with message: " + e.getMessage());
+            System.exit(1);
+            return;
+        }
 
         List<Article> articles = FeedParser.parseXML(xml);
         Heuristic heuristic = config.getHeuristic();
