@@ -38,27 +38,32 @@ public class App {
 
     private static void run(Config config, List<FeedsData> feedsDataArray, List<Heuristic> heuristics)
             throws ParserConfigurationException, IOException, SAXException {
+
         if (config.getPrintHelp()) {
             printHelp(feedsDataArray, heuristics);
             return;
         }
 
-        String xml;
-        try {
-            xml = FeedParser.fetchFeed(config.getFeedData().getUrl());
-        } catch (Exception e) {
-            System.out.println("Failed to fetch feed with message: " + e.getMessage());
-            System.exit(1);
-            return;
-        }
-
-        List<Article> articles = FeedParser.parseXML(xml);
-        Heuristic heuristic = config.getHeuristic();
-
         if (feedsDataArray == null || feedsDataArray.isEmpty()) {
             System.out.println("No feeds data found");
             return;
         }
+
+        List<Article> articles = new ArrayList<>();
+        for (FeedsData feed : config.getFeedsData()) {
+            String xml;
+            try {
+                xml = FeedParser.fetchFeed(feed.getUrl());
+            } catch (Exception e) {
+                System.out.println("Failed to fetch feed with message: " + e.getMessage());
+                System.exit(1);
+                return;
+            }
+            articles.addAll(FeedParser.parseXML(xml));
+        }
+
+        Heuristic heuristic = config.getHeuristic();
+
 
         if (config.getPrintFeed()) {
             System.out.println("Printing feed(s) ");

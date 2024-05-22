@@ -58,11 +58,6 @@ public class UserInterface {
             };
         }
 
-        if (!optionDict.containsKey("-f")) {
-            System.out.println("You have to specify a feed with flag \"-f\"");
-            System.exit(1);
-        }
-
         List<FeedsData> feedsData = null;
         try {
             feedsData = JSONParser.parseJsonFeedsData("src/data/feeds.json");
@@ -71,18 +66,19 @@ public class UserInterface {
             System.exit(1);
         }
 
-        String feedKey = optionDict.get("-f");
-        FeedsData chosenFeed = null;
-
-        for (var feedData : feedsData) {
-            if (Objects.equals(feedData.getLabel(), feedKey)) {
-                chosenFeed = feedData;
-                break;
-            }
+        List<FeedsData> chosenFeeds = new ArrayList<>();
+        if (!optionDict.containsKey("-f")) {
+            chosenFeeds.addAll(feedsData);
+        } else {
+            String feedKey = optionDict.get("-f");
+            feedsData.stream()
+                    .filter(feed -> feed.getLabel().equals(feedKey))
+                    .findFirst()
+                    .ifPresent(chosenFeeds::add);
         }
 
-        if (chosenFeed == null) {
-            System.out.println("The provided feed does not exist");
+        if (chosenFeeds.isEmpty()) {
+            System.out.println("Feed not found");
             System.exit(1);
         }
 
@@ -104,6 +100,6 @@ public class UserInterface {
             }
         }
 
-        return new Config(printHelp, printFeed, computeNamedEntities, chosenFeed, heuristic, statsFormat);
+        return new Config(printHelp, printFeed, computeNamedEntities, chosenFeeds, heuristic, statsFormat);
     }
 }
