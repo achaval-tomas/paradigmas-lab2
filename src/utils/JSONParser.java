@@ -79,6 +79,7 @@ public class JSONParser {
             case "PERSON" -> new PersonEntity(label, topics, keywords, "");
             case "LOCATION" -> new LocationEntity(label, topics, keywords, "", 0, 0);
             case "ORGANIZATION" -> new OrganizationEntity(label, topics, keywords, "", "");
+            case "EVENT" -> new EventEntity(label, topics, keywords, "", "");
             case "OTHER" -> new OtherEntity(label, topics, keywords);
             default -> null;
         };

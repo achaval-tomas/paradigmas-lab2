@@ -62,15 +62,14 @@ public class App {
             articles.addAll(FeedParser.parseXML(xml));
         }
 
-        Heuristic heuristic = config.getHeuristic();
-
-
         if (config.getPrintFeed()) {
             System.out.println("Printing feed(s) ");
             for (Article article : articles) {
                 article.print();
             }
         }
+
+        Heuristic heuristic = config.getHeuristic();
 
         if (config.getComputeNamedEntities()) {
             computeNamedEntities(config, articles, heuristic);
