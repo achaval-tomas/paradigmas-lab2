@@ -1,9 +1,9 @@
 package utils;
 
 public class Option {
-    private String name;
-    private String longName;
-    private Integer numValues;
+    private final String name;
+    private final String longName;
+    private final Integer numValues;
 
     public Option(String name, String longName, Integer numValues) {
         this.name = name;
@@ -19,8 +19,7 @@ public class Option {
         return longName;
     }
 
-    public Integer getnumValues() {
+    public Integer getNumValues() {
         return numValues;
     }
-
 }

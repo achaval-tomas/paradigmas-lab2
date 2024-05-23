@@ -1,10 +1,10 @@
 package feed;
 
 public class Article {
-    String title;
-    String description;
-    String pubDate;
-    String link;
+    private final String title;
+    private final String description;
+    private final String pubDate;
+    private final String link;
 
     Article(String title, String description, String pubDate, String link) {
         this.title = title;

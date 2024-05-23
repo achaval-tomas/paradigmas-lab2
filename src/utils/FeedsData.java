@@ -1,9 +1,9 @@
 package utils;
 
 public class FeedsData {
-    private String label;
-    private String url;
-    private String type;
+    private final String label;
+    private final String url;
+    private final String type;
 
     public FeedsData(String label, String url, String type) {
         this.label = label;

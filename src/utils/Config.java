@@ -5,11 +5,11 @@ import namedEntities.heuristics.Heuristic;
 import java.util.List;
 
 public class Config {
-    private boolean printFeed = false;
-    private boolean computeNamedEntities = false;
-    private List<FeedsData> feedsData;
-    private Heuristic heuristic;
-    private StatisticsFormat statsFormat;
+    private final boolean printFeed;
+    private final boolean computeNamedEntities;
+    private final List<FeedsData> feedsData;
+    private final Heuristic heuristic;
+    private final StatisticsFormat statsFormat;
 
     public Config(boolean printFeed, boolean computeNamedEntities, List<FeedsData> feedsData,
                   Heuristic heuristic, StatisticsFormat statsFormat) {

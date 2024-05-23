@@ -6,13 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class UserInterface {
 
-    private HashMap<String, String> optionDict;
+    private final HashMap<String, String> optionDict;
 
-    private List<Option> options;
+    private final List<Option> options;
 
     public UserInterface() {
         options = new ArrayList<>();
@@ -30,7 +29,7 @@ public class UserInterface {
         for (int i = 0; i < args.length; i++) {
             for (Option option : options) {
                 if (option.getName().equals(args[i]) || option.getLongName().equals(args[i])) {
-                    if (option.getnumValues() == 0) {
+                    if (option.getNumValues() == 0) {
                         optionDict.put(option.getName(), null);
                     } else {
                         if (i + 1 < args.length && !args[i + 1].startsWith("-")) {

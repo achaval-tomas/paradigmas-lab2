@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +54,7 @@ public class FeedParser {
         return articles;
     }
 
-    public static String fetchFeed(String feedURL) throws MalformedURLException, IOException, Exception {
+    public static String fetchFeed(String feedURL) throws Exception {
 
         URL url = new URL(feedURL);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -72,7 +71,7 @@ public class FeedParser {
         } else {
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
-            StringBuffer content = new StringBuffer();
+            StringBuilder content = new StringBuilder();
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
