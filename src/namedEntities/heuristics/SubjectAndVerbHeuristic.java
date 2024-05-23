@@ -13,7 +13,7 @@ public class SubjectAndVerbHeuristic implements Heuristic {
         text = Normalizer.normalize(text, Normalizer.Form.NFC);
         text = text.replaceAll("\\p{M}", "");
         
-        Pattern pattern = Pattern.compile("(?<name>([A-Z][A-Za-z]+)(?:\\s[A-Z][a-z]+)*)(?:\\sse)?(?:\\s[a-z]+[áéíóú])");
+        Pattern pattern = Pattern.compile("(?<name>([A-Z][A-Za-z]+)(?:\\s[A-Z][A-Za-z]*)*)(?:\\sse)?(?:\\s[a-z]+[áéíóú])");
 
         Matcher matcher = pattern.matcher(text);
 
