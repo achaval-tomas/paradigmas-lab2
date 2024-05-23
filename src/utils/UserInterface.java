@@ -28,12 +28,12 @@ public class UserInterface {
 
         for (int i = 0; i < args.length; i++) {
             for (Option option : options) {
-                if (option.getName().equals(args[i]) || option.getLongName().equals(args[i])) {
-                    if (option.getNumValues() == 0) {
-                        optionDict.put(option.getName(), null);
+                if (option.name().equals(args[i]) || option.longName().equals(args[i])) {
+                    if (option.numValues() == 0) {
+                        optionDict.put(option.name(), null);
                     } else {
                         if (i + 1 < args.length && !args[i + 1].startsWith("-")) {
-                            optionDict.put(option.getName(), args[i + 1]);
+                            optionDict.put(option.name(), args[i + 1]);
                             i++;
                         } else {
                             System.out.println("Invalid inputs");
@@ -75,7 +75,7 @@ public class UserInterface {
         } else {
             String feedKey = optionDict.get("-f");
             feedsData.stream()
-                    .filter(feed -> feed.getLabel().equals(feedKey))
+                    .filter(feed -> feed.label().equals(feedKey))
                     .findFirst()
                     .ifPresent(chosenFeeds::add);
         }
@@ -114,7 +114,7 @@ public class UserInterface {
         System.out.println("                                       the specified key");
         System.out.println("                                       Available feed keys are: ");
         for (FeedsData feedData : feedsDataArray) {
-            System.out.println("                                       " + feedData.getLabel());
+            System.out.println("                                       " + feedData.label());
         }
         System.out.println("  -ne, --named-entity <heuristicName>: Use the specified heuristic to extract");
         System.out.println("                                       named entities");

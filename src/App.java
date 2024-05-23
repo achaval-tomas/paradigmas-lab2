@@ -45,10 +45,10 @@ public class App {
         }
 
         List<Article> articles = new ArrayList<>();
-        for (FeedsData feed : config.getFeedsData()) {
+        for (FeedsData feed : config.feedsData()) {
             String xml;
             try {
-                xml = FeedParser.fetchFeed(feed.getUrl());
+                xml = FeedParser.fetchFeed(feed.url());
             } catch (Exception e) {
                 System.out.println("Failed to fetch feed with message: " + e.getMessage());
                 System.exit(1);
@@ -57,33 +57,33 @@ public class App {
             articles.addAll(FeedParser.parseXML(xml));
         }
 
-        if (config.getPrintFeed()) {
+        if (config.printFeed()) {
             System.out.println("Printing feed(s) ");
             for (Article article : articles) {
                 article.print();
             }
         }
 
-        Heuristic heuristic = config.getHeuristic();
+        Heuristic heuristic = config.heuristic();
 
-        if (config.getComputeNamedEntities()) {
+        if (config.computeNamedEntities()) {
             computeNamedEntities(config, articles, heuristic);
         }
     }
 
     private static void computeNamedEntities(Config config, List<Article> articles, Heuristic heuristic) throws IOException {
-        System.out.printf("Computing named entities using %s heuristic.\n", config.getHeuristic().getLongName());
+        System.out.printf("Computing named entities using %s heuristic.\n", config.heuristic().getLongName());
 
         var candidates = new ArrayList<String>();
         for (Article article : articles) {
-            candidates.addAll(heuristic.extractCandidates(article.getDescription()));
-            candidates.addAll(heuristic.extractCandidates(article.getTitle()));
+            candidates.addAll(heuristic.extractCandidates(article.description()));
+            candidates.addAll(heuristic.extractCandidates(article.title()));
         }
 
         List<NamedEntity> namedEntities = extractNamedEntities(candidates);
 
         System.out.println("\nStats: ");
-        switch (config.getStatsFormat()) {
+        switch (config.statsFormat()) {
             case Category -> printStatsByCategory(namedEntities);
             case Topic -> printStatsByTopic(namedEntities);
         }
