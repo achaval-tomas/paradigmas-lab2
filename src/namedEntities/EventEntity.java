@@ -21,5 +21,7 @@ public class EventEntity extends NamedEntity {
         return date;
     }
 
-    public String getCategoryName() { return "EVENT"; }
+    public String getCategoryName() {
+        return "EVENT";
+    }
 }

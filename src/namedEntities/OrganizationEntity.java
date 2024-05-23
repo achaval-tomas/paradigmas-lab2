@@ -21,5 +21,7 @@ public class OrganizationEntity extends NamedEntity {
         return type;
     }
 
-    public String getCategoryName() { return "ORGANIZATION"; }
+    public String getCategoryName() {
+        return "ORGANIZATION";
+    }
 }

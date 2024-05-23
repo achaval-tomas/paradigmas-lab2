@@ -1,4 +1,5 @@
 package namedEntities.heuristics;
+
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class SubjectAndVerbHeuristic implements Heuristic {
 
         text = text.replaceAll("[-+.^:,\"]", "");
         text = Normalizer.normalize(text, Normalizer.Form.NFC);
-        
+
         Pattern pattern = Pattern.compile("(?<name>([A-Z][A-Za-z]+)(?:\\s[A-Z][A-Za-z]*)*)(?:\\sse)?(?:\\s[a-z]+[áéíóú])");
 
         Matcher matcher = pattern.matcher(text);

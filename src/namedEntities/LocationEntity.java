@@ -27,5 +27,7 @@ public class LocationEntity extends NamedEntity {
         return longitude;
     }
 
-    public String getCategoryName() { return "LOCATION"; }
+    public String getCategoryName() {
+        return "LOCATION";
+    }
 }
