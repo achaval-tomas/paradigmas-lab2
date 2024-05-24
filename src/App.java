@@ -27,13 +27,11 @@ public class App {
         UserInterface ui = new UserInterface();
         Config config = ui.handleInput(args, feedsData, heuristics);
 
-        run(config, feedsData);
+        run(config);
     }
 
-    private static void run(Config config, List<FeedData> feedsData)
-            throws ParserConfigurationException, IOException, SAXException {
-
-        if (feedsData == null || feedsData.isEmpty()) {
+    private static void run(Config config) throws ParserConfigurationException, IOException, SAXException {
+        if (config.feedsData().isEmpty()) {
             System.out.println("No feeds data found");
             return;
         }
@@ -52,16 +50,18 @@ public class App {
         }
 
         if (config.printFeed()) {
-            System.out.println("Printing feed(s) ");
-            for (Article article : articles) {
-                article.print();
-            }
+            printFeed(articles);
         }
 
-        Heuristic heuristic = config.heuristic();
-
         if (config.heuristic() != null) {
-            computeNamedEntities(articles, heuristic, config.statsFormat());
+            computeNamedEntities(articles, config.heuristic(), config.statsFormat());
+        }
+    }
+
+    private static void printFeed(List<Article> articles) {
+        System.out.println("Printing feed(s) ");
+        for (Article article : articles) {
+            article.print();
         }
     }
 
