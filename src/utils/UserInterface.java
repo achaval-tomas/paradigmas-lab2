@@ -73,7 +73,7 @@ public class UserInterface {
             System.exit(0);
         }
 
-        boolean printFeed = optionDict.containsKey("-pf");
+        boolean printFeed = optionDict.containsKey("-pf") || !optionDict.containsKey("-ne");
         StatisticsFormat statsFormat = StatisticsFormat.Category;
         if (optionDict.containsKey("-sf")) {
             String statsFormatOpt = optionDict.get("-sf");
