@@ -22,13 +22,7 @@ public class App {
         heuristics.add(new SubjectAndVerbHeuristic());
         heuristics.add(new NotInDictionaryHeuristic());
 
-        List<FeedsData> feedsDataArray = new ArrayList<>();
-        try {
-            feedsDataArray = JSONParser.parseJsonFeedsData("src/data/feeds.json");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
+        List<FeedsData> feedsDataArray = JSONParser.parseJsonFeedsData("src/data/feeds.json");
 
         UserInterface ui = new UserInterface();
         Config config = ui.handleInput(args, feedsDataArray, heuristics);
