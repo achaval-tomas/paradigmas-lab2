@@ -7,7 +7,7 @@ import java.util.List;
 public record Config(
         boolean printFeed,
         boolean computeNamedEntities,
-        List<FeedsData> feedsData,
+        List<FeedData> feedsData,
         Heuristic heuristic,
         StatisticsFormat statsFormat
 ) {

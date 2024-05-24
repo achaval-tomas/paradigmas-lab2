@@ -13,9 +13,9 @@ import java.util.List;
 
 public class JSONParser {
 
-    static public List<FeedsData> parseJsonFeedsData(String jsonFilePath) throws IOException {
+    static public List<FeedData> parseJsonFeedsData(String jsonFilePath) throws IOException {
         String jsonData = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
-        List<FeedsData> feedsList = new ArrayList<>();
+        List<FeedData> feedsList = new ArrayList<>();
 
         JSONArray jsonArray = new JSONArray(jsonData);
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -23,7 +23,7 @@ public class JSONParser {
             String label = jsonObject.getString("label");
             String url = jsonObject.getString("url");
             String type = jsonObject.getString("type");
-            feedsList.add(new FeedsData(label, url, type));
+            feedsList.add(new FeedData(label, url, type));
         }
         return feedsList;
     }

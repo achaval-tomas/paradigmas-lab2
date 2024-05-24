@@ -22,24 +22,24 @@ public class App {
         heuristics.add(new SubjectAndVerbHeuristic());
         heuristics.add(new NotInDictionaryHeuristic());
 
-        List<FeedsData> feedsDataArray = JSONParser.parseJsonFeedsData("src/data/feeds.json");
+        List<FeedData> feedsData = JSONParser.parseJsonFeedsData("src/data/feeds.json");
 
         UserInterface ui = new UserInterface();
-        Config config = ui.handleInput(args, feedsDataArray, heuristics);
+        Config config = ui.handleInput(args, feedsData, heuristics);
 
-        run(config, feedsDataArray);
+        run(config, feedsData);
     }
 
-    private static void run(Config config, List<FeedsData> feedsDataArray)
+    private static void run(Config config, List<FeedData> feedsData)
             throws ParserConfigurationException, IOException, SAXException {
 
-        if (feedsDataArray == null || feedsDataArray.isEmpty()) {
+        if (feedsData == null || feedsData.isEmpty()) {
             System.out.println("No feeds data found");
             return;
         }
 
         List<Article> articles = new ArrayList<>();
-        for (FeedsData feed : config.feedsData()) {
+        for (FeedData feed : config.feedsData()) {
             String xml;
             try {
                 xml = FeedParser.fetchFeed(feed.url());

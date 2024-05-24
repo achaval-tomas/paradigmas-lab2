@@ -2,7 +2,6 @@ package utils;
 
 import namedEntities.heuristics.Heuristic;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,14 +23,14 @@ public class UserInterface {
         optionDict = new HashMap<>();
     }
 
-    private static void printHelp(List<FeedsData> feedsDataArray, List<Heuristic> heuristics) {
+    private static void printHelp(List<FeedData> feedsData, List<Heuristic> heuristics) {
         System.out.println("Usage: make run ARGS=\"[OPTION]\"");
         System.out.println("Options:");
         System.out.println("  -h, --help: Show this help message and exit");
         System.out.println("  -f, --feed <feedKey>:                Fetch and process the feed with");
         System.out.println("                                       the specified key");
         System.out.println("                                       Available feed keys are: ");
-        for (FeedsData feedData : feedsDataArray) {
+        for (FeedData feedData : feedsData) {
             System.out.println("                                       " + feedData.label());
         }
         System.out.println("  -ne, --named-entity <heuristicName>: Use the specified heuristic to extract");
@@ -49,7 +48,7 @@ public class UserInterface {
         System.out.println("                                       topic: Topic-wise stats");
     }
 
-    public Config handleInput(String[] args, List<FeedsData> feedsDataArray, List<Heuristic> heuristics) {
+    public Config handleInput(String[] args, List<FeedData> feedsData, List<Heuristic> heuristics) {
 
         for (int i = 0; i < args.length; i++) {
             for (Option option : options) {
@@ -70,7 +69,7 @@ public class UserInterface {
         }
 
         if (optionDict.containsKey("-h")) {
-            printHelp(feedsDataArray, heuristics);
+            printHelp(feedsData, heuristics);
             System.exit(0);
         }
 
@@ -86,21 +85,13 @@ public class UserInterface {
             };
         }
 
-        List<FeedsData> feedsData = null;
-        try {
-            feedsData = JSONParser.parseJsonFeedsData("src/data/feeds.json");
-        } catch (IOException e) {
-            System.out.println("Failed to read file with message: " + e.getMessage());
-            System.exit(1);
-        }
-
-        List<FeedsData> chosenFeeds = new ArrayList<>();
-        if (!optionDict.containsKey("-f")) {
+        List<FeedData> chosenFeeds = new ArrayList<>();
+        String chosenFeedKey = optionDict.get("-f");
+        if (chosenFeedKey == null) {
             chosenFeeds.addAll(feedsData);
         } else {
-            String feedKey = optionDict.get("-f");
             feedsData.stream()
-                    .filter(feed -> feed.label().equals(feedKey))
+                    .filter(feed -> feed.label().equals(chosenFeedKey))
                     .findFirst()
                     .ifPresent(chosenFeeds::add);
         }
