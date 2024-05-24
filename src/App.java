@@ -5,10 +5,8 @@ import namedEntities.heuristics.CapitalizedWordHeuristic;
 import namedEntities.heuristics.Heuristic;
 import namedEntities.heuristics.NotInDictionaryHeuristic;
 import namedEntities.heuristics.SubjectAndVerbHeuristic;
-import org.xml.sax.SAXException;
 import utils.*;
 
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +14,7 @@ import java.util.List;
 
 public class App {
 
-    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
+    public static void main(String[] args) throws Exception {
         var heuristics = new ArrayList<Heuristic>();
         heuristics.add(new CapitalizedWordHeuristic());
         heuristics.add(new SubjectAndVerbHeuristic());
@@ -30,24 +28,13 @@ public class App {
         run(config);
     }
 
-    private static void run(Config config) throws ParserConfigurationException, IOException, SAXException {
+    private static void run(Config config) throws Exception {
         if (config.feedsData().isEmpty()) {
             System.out.println("No feeds data found");
             return;
         }
 
-        List<Article> articles = new ArrayList<>();
-        for (FeedData feed : config.feedsData()) {
-            String xml;
-            try {
-                xml = FeedParser.fetchFeed(feed.url());
-            } catch (Exception e) {
-                System.out.println("Failed to fetch feed with message: " + e.getMessage());
-                System.exit(1);
-                return;
-            }
-            articles.addAll(FeedParser.parseXML(xml));
-        }
+        List<Article> articles = extractArticlesFrom(config.feedsData());
 
         if (config.printFeed()) {
             printFeed(articles);
@@ -56,6 +43,23 @@ public class App {
         if (config.heuristic() != null) {
             computeNamedEntities(articles, config.heuristic(), config.statsFormat());
         }
+    }
+
+    private static List<Article> extractArticlesFrom(List<FeedData> feedsData) throws Exception {
+        List<Article> articles = new ArrayList<>();
+
+        for (FeedData feed : feedsData) {
+            String xml;
+            try {
+                xml = FeedParser.fetchFeed(feed.url());
+            } catch (Exception e) {
+                System.out.println("Failed to fetch feed with message: " + e.getMessage());
+                throw e;
+            }
+            articles.addAll(FeedParser.parseXML(xml));
+        }
+
+        return articles;
     }
 
     private static void printFeed(List<Article> articles) {
