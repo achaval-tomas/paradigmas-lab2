@@ -90,15 +90,16 @@ public class UserInterface {
         if (chosenFeedKey == null) {
             chosenFeeds.addAll(feedsData);
         } else {
-            feedsData.stream()
+            var chosenFeed = feedsData.stream()
                     .filter(feed -> feed.label().equals(chosenFeedKey))
-                    .findFirst()
-                    .ifPresent(chosenFeeds::add);
-        }
+                    .findFirst();
 
-        if (chosenFeeds.isEmpty()) {
-            System.out.println("Feed not found");
-            System.exit(1);
+            if (chosenFeed.isEmpty()) {
+                System.out.printf("Feed '%s' not found\n", chosenFeedKey);
+                System.exit(1);
+            }
+
+            chosenFeeds.add(chosenFeed.get());
         }
 
         Heuristic heuristic = null;
