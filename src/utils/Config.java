@@ -6,9 +6,8 @@ import java.util.List;
 
 public record Config(
         boolean printFeed,
-        boolean computeNamedEntities,
         List<FeedData> feedsData,
-        Heuristic heuristic,
+        Heuristic heuristic, // The heuristic to use for computing named entities, or null to skip computing.
         StatisticsFormat statsFormat
 ) {
 }

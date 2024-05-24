@@ -74,7 +74,6 @@ public class UserInterface {
         }
 
         boolean printFeed = optionDict.containsKey("-pf");
-        boolean computeNamedEntities = optionDict.containsKey("-ne");
         StatisticsFormat statsFormat = StatisticsFormat.Category;
         if (optionDict.containsKey("-sf")) {
             String statsFormatOpt = optionDict.get("-sf");
@@ -103,7 +102,7 @@ public class UserInterface {
         }
 
         Heuristic heuristic = null;
-        if (computeNamedEntities) {
+        if (optionDict.containsKey("-ne")) {
             String heuristicName = optionDict.get("-ne").trim().toLowerCase();
 
             for (Heuristic h : heuristics) {
@@ -120,7 +119,7 @@ public class UserInterface {
             }
         }
 
-        return new Config(printFeed, computeNamedEntities, chosenFeeds, heuristic, statsFormat);
+        return new Config(printFeed, chosenFeeds, heuristic, statsFormat);
     }
 
 }

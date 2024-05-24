@@ -60,13 +60,14 @@ public class App {
 
         Heuristic heuristic = config.heuristic();
 
-        if (config.computeNamedEntities()) {
-            computeNamedEntities(config, articles, heuristic);
+        if (config.heuristic() != null) {
+            computeNamedEntities(articles, heuristic, config.statsFormat());
         }
     }
 
-    private static void computeNamedEntities(Config config, List<Article> articles, Heuristic heuristic) throws IOException {
-        System.out.printf("Computing named entities using %s heuristic.\n", config.heuristic().getLongName());
+    private static void computeNamedEntities(List<Article> articles, Heuristic heuristic, StatisticsFormat statsFormat)
+            throws IOException {
+        System.out.printf("Computing named entities using '%s' heuristic.\n", heuristic.getLongName());
 
         var candidates = new ArrayList<String>();
         for (Article article : articles) {
@@ -76,8 +77,8 @@ public class App {
 
         List<NamedEntity> namedEntities = extractNamedEntities(candidates);
 
-        System.out.println("\nStats: ");
-        switch (config.statsFormat()) {
+        System.out.println();
+        switch (statsFormat) {
             case Category -> printStatsByCategory(namedEntities);
             case Topic -> printStatsByTopic(namedEntities);
         }
