@@ -43,10 +43,10 @@ public class FeedParser {
 
             String title = getTextOfTag(item, "title");
             String description = getTextOfTag(item, "description");
-            String link = getTextOfTag(item, "link");
             String pubDate = getTextOfTag(item, "pubDate");
+            String link = getTextOfTag(item, "link");
 
-            Article article = new Article(title, description, link, pubDate);
+            Article article = new Article(title, description, pubDate, link);
 
             articles.add(article);
         }
