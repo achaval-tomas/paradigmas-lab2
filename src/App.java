@@ -41,7 +41,8 @@ public class App {
         }
 
         if (config.heuristic() != null) {
-            computeNamedEntities(namedEntitiesDict, articles, config.heuristic(), config.statsFormat());
+            var namedEntities = computeNamedEntities(namedEntitiesDict, config.heuristic(), articles);
+            printNamedEntitiesStats(config.statsFormat(), namedEntities);
         }
     }
 
@@ -69,11 +70,10 @@ public class App {
         }
     }
 
-    private static void computeNamedEntities(
+    private static List<NamedEntity> computeNamedEntities(
             NamedEntitiesDictionary namedEntitiesDict,
-            List<Article> articles,
             Heuristic heuristic,
-            StatisticsFormat statsFormat
+            List<Article> articles
     ) {
         System.out.printf("Computing named entities using '%s' heuristic.\n", heuristic.getLongName());
 
@@ -83,8 +83,10 @@ public class App {
             candidates.addAll(heuristic.extractCandidates(article.title()));
         }
 
-        List<NamedEntity> namedEntities = extractNamedEntities(namedEntitiesDict, candidates);
+        return extractNamedEntities(namedEntitiesDict, candidates);
+    }
 
+    private static void printNamedEntitiesStats(StatisticsFormat statsFormat, List<NamedEntity> namedEntities) {
         System.out.println();
         switch (statsFormat) {
             case Category -> printStatsByCategory(namedEntities);
