@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class JSONParser {
@@ -29,7 +28,7 @@ public class JSONParser {
     }
 
     // Returns a HashMap that maps each keyword to its named entity.
-    static public HashMap<String, NamedEntity> parseJsonDict(String jsonFilePath) throws IOException {
+    static public NamedEntitiesDictionary parseJsonDict(String jsonFilePath) throws IOException {
         String jsonData = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
         JSONArray jsonArray = new JSONArray(jsonData);
 
@@ -44,16 +43,7 @@ public class JSONParser {
             namedEntities.add(namedEntity);
         }
 
-        var namedEntitiesByKeywords = new HashMap<String, NamedEntity>();
-
-        for (NamedEntity namedEntity : namedEntities) {
-            for (String keyword : namedEntity.getKeywords()) {
-                keyword = StringUtils.simplify(keyword);
-                namedEntitiesByKeywords.put(keyword, namedEntity);
-            }
-        }
-
-        return namedEntitiesByKeywords;
+        return new NamedEntitiesDictionary(namedEntities);
     }
 
     static private NamedEntity parseJsonNamedEntity(JSONObject jsonObject) {

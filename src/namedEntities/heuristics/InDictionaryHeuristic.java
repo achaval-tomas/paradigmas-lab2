@@ -1,13 +1,10 @@
 package namedEntities.heuristics;
 
-import namedEntities.NamedEntity;
-import utils.StringUtils;
+import namedEntities.NamedEntitiesDictionary;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,10 +19,10 @@ public class InDictionaryHeuristic implements Heuristic {
     // e.g, if this constant is 3, then we would never match 'Copa Libertadores de América'.
     private static final int MAX_WORDS_PER_CANDIDATE = 5;
 
-    private final Set<String> dictionary;
+    private final NamedEntitiesDictionary dictionary;
 
-    public InDictionaryHeuristic(Map<String, NamedEntity> namedEntitiesByKeywords) {
-        dictionary = namedEntitiesByKeywords.keySet();
+    public InDictionaryHeuristic(NamedEntitiesDictionary dictionary) {
+        this.dictionary = dictionary;
     }
 
     public List<String> extractCandidates(String text) {
@@ -47,9 +44,9 @@ public class InDictionaryHeuristic implements Heuristic {
                 }
                 candidateBuilder.append(matches.get(i + j));
 
-                var candidate = StringUtils.simplify(candidateBuilder.toString());
+                var candidate = candidateBuilder.toString();
                 // Check if candidate is a keyword.
-                if (dictionary.contains(candidate)) {
+                if (dictionary.containsByKeywordNormalized(candidate)) {
                     // If it is, then add the candidate to candidates and
                     // go to the next match.
                     candidates.add(candidate);
