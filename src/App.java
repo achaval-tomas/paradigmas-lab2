@@ -1,34 +1,34 @@
 import feed.Article;
 import feed.FeedParser;
 import namedEntities.NamedEntity;
-import namedEntities.heuristics.CapitalizedWordHeuristic;
-import namedEntities.heuristics.Heuristic;
-import namedEntities.heuristics.NotInDictionaryHeuristic;
-import namedEntities.heuristics.SubjectAndVerbHeuristic;
+import namedEntities.heuristics.*;
 import utils.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
+        var namedEntitiesByKeywords = JSONParser.parseJsonDict("src/data/dictionary.json");
+
         var heuristics = new ArrayList<Heuristic>();
         heuristics.add(new CapitalizedWordHeuristic());
         heuristics.add(new SubjectAndVerbHeuristic());
         heuristics.add(new NotInDictionaryHeuristic());
+        heuristics.add(new InDictionaryHeuristic(namedEntitiesByKeywords));
 
         List<FeedData> feedsData = JSONParser.parseJsonFeedsData("src/data/feeds.json");
 
         UserInterface ui = new UserInterface();
         Config config = ui.handleInput(args, feedsData, heuristics);
 
-        run(config);
+        run(namedEntitiesByKeywords, config);
     }
 
-    private static void run(Config config) throws Exception {
+    private static void run(Map<String, NamedEntity> namedEntitiesByKeywords, Config config) throws Exception {
         if (config.feedsData().isEmpty()) {
             System.out.println("No feeds data found");
             return;
@@ -41,7 +41,7 @@ public class App {
         }
 
         if (config.heuristic() != null) {
-            computeNamedEntities(articles, config.heuristic(), config.statsFormat());
+            computeNamedEntities(namedEntitiesByKeywords, articles, config.heuristic(), config.statsFormat());
         }
     }
 
@@ -69,8 +69,12 @@ public class App {
         }
     }
 
-    private static void computeNamedEntities(List<Article> articles, Heuristic heuristic, StatisticsFormat statsFormat)
-            throws IOException {
+    private static void computeNamedEntities(
+            Map<String, NamedEntity> namedEntitiesByKeywords,
+            List<Article> articles,
+            Heuristic heuristic,
+            StatisticsFormat statsFormat
+    ) {
         System.out.printf("Computing named entities using '%s' heuristic.\n", heuristic.getLongName());
 
         var candidates = new ArrayList<String>();
@@ -79,7 +83,7 @@ public class App {
             candidates.addAll(heuristic.extractCandidates(article.title()));
         }
 
-        List<NamedEntity> namedEntities = extractNamedEntities(candidates);
+        List<NamedEntity> namedEntities = extractNamedEntities(namedEntitiesByKeywords, candidates);
 
         System.out.println();
         switch (statsFormat) {
@@ -129,9 +133,10 @@ public class App {
         }
     }
 
-    private static List<NamedEntity> extractNamedEntities(List<String> candidates) throws IOException {
-        HashMap<String, NamedEntity> namedEntitiesByKeywords = JSONParser.parseJsonDict("src/data/dictionary.json");
-
+    private static List<NamedEntity> extractNamedEntities(
+            Map<String, NamedEntity> namedEntitiesByKeywords,
+            List<String> candidates
+    ) {
         var namedEntities = new ArrayList<NamedEntity>();
         for (String candidate : candidates) {
             var entity = namedEntitiesByKeywords.get(StringUtils.simplify(candidate));

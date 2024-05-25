@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This heuristic works by checking if a word is in a spanish dictionary.
+ * If it isn't, then it's likely a named entity.
+ */
 public class NotInDictionaryHeuristic implements Heuristic {
     private final HashSet<String> dictionary;
     private final HashSet<String> prefixes;
