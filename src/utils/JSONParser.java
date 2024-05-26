@@ -27,7 +27,6 @@ public class JSONParser {
         return feedsList;
     }
 
-    // Returns a HashMap that maps each keyword to its named entity.
     static public NamedEntitiesDictionary parseJsonDict(String jsonFilePath) throws IOException {
         String jsonData = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
         JSONArray jsonArray = new JSONArray(jsonData);
