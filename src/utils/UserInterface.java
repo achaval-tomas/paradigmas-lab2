@@ -5,11 +5,9 @@ import namedEntities.heuristics.Heuristic;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserInterface {
-
-    private final HashMap<String, String> optionDict;
-
     private final List<Option> options;
 
     public UserInterface() {
@@ -19,8 +17,6 @@ public class UserInterface {
         options.add(new Option("-ne", "--named-entity", 1));
         options.add(new Option("-pf", "--print-feed", 0));
         options.add(new Option("-sf", "--stats-format", 1));
-
-        optionDict = new HashMap<>();
     }
 
     private static void printHelp(List<FeedData> feedsData, List<Heuristic> heuristics) {
@@ -49,6 +45,23 @@ public class UserInterface {
     }
 
     public Config handleInput(String[] args, List<FeedData> feedsData, List<Heuristic> heuristics) {
+        HashMap<String, String> optionDict = parseOptions(args);
+
+        if (optionDict.containsKey("-h")) {
+            printHelp(feedsData, heuristics);
+            System.exit(0);
+        }
+
+        boolean printFeed = optionDict.containsKey("-pf") || !optionDict.containsKey("-ne");
+        List<FeedData> chosenFeeds = getChosenFeeds(optionDict, feedsData);
+        Heuristic heuristic = getHeuristic(optionDict, heuristics);
+        StatisticsFormat statsFormat = getStatsFormat(optionDict);
+
+        return new Config(printFeed, chosenFeeds, heuristic, statsFormat);
+    }
+
+    private HashMap<String, String> parseOptions(String[] args) {
+        var optionDict = new HashMap<String, String>();
 
         for (int i = 0; i < args.length; i++) {
             for (Option option : options) {
@@ -68,22 +81,10 @@ public class UserInterface {
             }
         }
 
-        if (optionDict.containsKey("-h")) {
-            printHelp(feedsData, heuristics);
-            System.exit(0);
-        }
+        return optionDict;
+    }
 
-        boolean printFeed = optionDict.containsKey("-pf") || !optionDict.containsKey("-ne");
-        StatisticsFormat statsFormat = StatisticsFormat.Category;
-        if (optionDict.containsKey("-sf")) {
-            String statsFormatOpt = optionDict.get("-sf");
-            statsFormat = switch (statsFormatOpt) {
-                case "cat" -> StatisticsFormat.Category;
-                case "topic" -> StatisticsFormat.Topic;
-                default -> statsFormat;
-            };
-        }
-
+    private static List<FeedData> getChosenFeeds(HashMap<String, String> optionDict, List<FeedData> feedsData) {
         List<FeedData> chosenFeeds = new ArrayList<>();
         String chosenFeedKey = optionDict.get("-f");
         if (chosenFeedKey == null) {
@@ -100,7 +101,10 @@ public class UserInterface {
 
             chosenFeeds.add(chosenFeed.get());
         }
+        return chosenFeeds;
+    }
 
+    private static Heuristic getHeuristic(HashMap<String, String> optionDict, List<Heuristic> heuristics) {
         Heuristic heuristic = null;
         if (optionDict.containsKey("-ne")) {
             String heuristicName = optionDict.get("-ne").trim().toLowerCase();
@@ -118,8 +122,20 @@ public class UserInterface {
                 System.exit(1);
             }
         }
-
-        return new Config(printFeed, chosenFeeds, heuristic, statsFormat);
+        return heuristic;
     }
 
+    private StatisticsFormat getStatsFormat(Map<String, String> optionDict) {
+        StatisticsFormat statsFormat = StatisticsFormat.Category;
+        if (optionDict.containsKey("-sf")) {
+            String statsFormatOpt = optionDict.get("-sf");
+            statsFormat = switch (statsFormatOpt) {
+                case "cat" -> StatisticsFormat.Category;
+                case "topic" -> StatisticsFormat.Topic;
+                default -> statsFormat;
+            };
+        }
+
+        return statsFormat;
+    }
 }
