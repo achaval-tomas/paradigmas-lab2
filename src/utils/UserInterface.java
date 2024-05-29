@@ -96,6 +96,7 @@ public class UserInterface {
 
             if (chosenFeed.isEmpty()) {
                 System.out.printf("Feed '%s' not found\n", chosenFeedKey);
+                System.out.println("Use --help to check for available feeds.");
                 System.exit(1);
             }
 
@@ -119,6 +120,7 @@ public class UserInterface {
 
             if (heuristic == null) {
                 System.out.println("The provided heuristic does not exist");
+                System.out.println("Use --help to check for available heuristics.");
                 System.exit(1);
             }
         }
@@ -129,10 +131,16 @@ public class UserInterface {
         StatisticsFormat statsFormat = StatisticsFormat.Category;
         if (optionDict.containsKey("-sf")) {
             String statsFormatOpt = optionDict.get("-sf");
-            statsFormat = switch (statsFormatOpt) {
-                case "cat" -> StatisticsFormat.Category;
-                case "topic" -> StatisticsFormat.Topic;
-                default -> statsFormat;
+            switch (statsFormatOpt) {
+                case "cat":
+                    break;
+                case "topic":
+                    statsFormat = StatisticsFormat.Topic;
+                    break;
+                default:
+                    System.out.printf("Format '%s' does not exist\n", statsFormatOpt);
+                    System.out.println("Use --help to check for available formats.");
+                    System.exit(1);
             };
         }
 
